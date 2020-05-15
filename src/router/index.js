@@ -1,19 +1,29 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
+import Home from "../views/home.vue";
+import Login from "../views/login.vue";
+import Index from "../views/index.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "home",
+    component: Home,
+    redirect: "index",
+    //子路由
+    children: [
+      {
+        path: "/index",
+        name: "index",
+        component: Index
+      }
+    ]
   },
   {
     path: "/login",
-    name: "Login",
+    name: "login",
     component: Login
   }
 ];
