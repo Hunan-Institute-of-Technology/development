@@ -13,4 +13,7 @@ export default {
   // methods: {}
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+@import url("./assets/scss/base.scss");
+@import url("./assets/scss/btn.scss");
+</style>
