@@ -1,13 +1,10 @@
 <template>
-  <div>
-    login
+  <div class="index">
+    Index
   </div>
 </template>
 <script>
 export default {
-  name: "Login",
-  data() {
-    return {};
-  }
-};
+  name: "index"
+}
 </script>

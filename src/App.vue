@@ -16,4 +16,5 @@ export default {
 <style lang="scss">
 @import url("./assets/scss/base.scss");
 @import url("./assets/scss/btn.scss");
+@import "./assets/scss/reset.scss";
 </style>
