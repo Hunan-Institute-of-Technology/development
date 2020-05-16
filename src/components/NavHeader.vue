@@ -3,8 +3,8 @@
     <div class="nav-topbar">
       <div class="container">
         <div class="topbar-user">
-          <a href="javascript">登录</a>
-          <a href="javascript">注册</a>
+          <a href="/#/login">登录</a>
+          <a href="/#/signup">注册</a>
           <a href="javascript">消息通知</a>
           <a href="javascript">我的订单</a>
           <a href="javascript">购物车</a>
@@ -12,14 +12,14 @@
       </div>
     </div>
     <div class="nav-header">
-      <div class="container">
-        <div class="header-logo">
+      <div class="container " >
+        <div class="header-logo ">
           <!-- 点击图标返回首页 -->
           <a href="/#/index">
             <img src="/imgs/app1.png" alt="" />
           </a>
         </div>
-        <div class="header-search">
+        <div class="header-search ">
           <form action="get" class="search_box">
             <span class="fd"> <img src="/imgs/icon-fd.png"/></span>
             <input type="text" placeholder="搜索想要的商品" />
@@ -63,6 +63,7 @@
       width: 1226px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       margin-right: auto;
       margin-left: auto;
       .header-logo {
@@ -80,9 +81,10 @@
       }
       .header-search {
         display: inline-block;
+        margin-bottom: 35px;
         .search_box {
-          height: 26px;
-          width: 570px;
+          height: 80px;
+          width: 300px;
           .fd {
 
             img {
