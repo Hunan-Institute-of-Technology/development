@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
-import SginUp from "../views/SginUp.vue";
+import SignUp from "../views/SignUp.vue";
 import Index from "../views/index.vue";
 
 
@@ -29,9 +29,9 @@ const routes = [
     component: Login
   },
   {
-    path: "/sginup",
-    name: "SginUp",
-    component: SginUp
+    path: "/signup",
+    name: "SignUp",
+    component: SignUp
   }
 ];
 
