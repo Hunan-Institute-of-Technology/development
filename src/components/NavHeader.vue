@@ -3,8 +3,8 @@
     <div class="nav-topbar">
       <div class="container">
         <div class="topbar-user">
-          <a href="javascript">登录</a>
-          <a href="javascript">注册</a>
+          <a href="/#/login">登录</a>
+          <a href="/#/sginip">注册</a>
           <a href="javascript">消息通知</a>
           <a href="javascript">我的订单</a>
         </div>
