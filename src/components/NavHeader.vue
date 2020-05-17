@@ -7,7 +7,6 @@
           <a href="javascript">注册</a>
           <a href="javascript">消息通知</a>
           <a href="javascript">我的订单</a>
-          <a href="javascript">购物车</a>
         </div>
       </div>
     </div>
@@ -21,9 +20,14 @@
         </div>
         <div class="header-search">
           <form action="get" class="search_box">
-            <span class="fd"> <img src="/imgs/icon-fd.png"/></span>
-            <input type="text" placeholder="搜索想要的商品" />
-            <input type="submit" value="搜索" />
+            <input
+              class="sear-input"
+              type="text"
+              placeholder="搜索想要的商品"
+            />
+            <span class="wrapper_sub">
+              <input class="sub-input" type="submit" value="搜索" />
+            </span>
           </form>
         </div>
       </div>
@@ -56,8 +60,7 @@
     }
   }
   .nav-header {
-    height: 112px;
-    line-height: 112px;
+    height: 135px;
     .container {
       position: relative;
       width: 1226px;
@@ -67,11 +70,11 @@
       margin-left: auto;
       .header-logo {
         margin-right: 50px;
+        padding-top: 10px;
         a {
           display: inline-block;
           width: 80px;
           height: 80px;
-          padding-top: 10px;
           img {
             width: 80px;
             height: 80px;
@@ -79,14 +82,28 @@
         }
       }
       .header-search {
-        display: inline-block;
         .search_box {
-          height: 26px;
-          width: 570px;
-          .fd {
-
-            img {
-              width: 10px;
+          display: flex;
+          height: 50px;
+          border: 2px #ff6600 solid;
+          border-radius: 13px;
+          .sear-input {
+            border: none;
+            height: 26px;
+            width: 500px;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 12px 50px 12px 20px;
+          }
+          .wrapper_sub {
+            background: #ff6600;
+            .sub-input {
+              display: inline-block;
+              height: 26px;
+              width: 60px;
+              border: none;
+              margin: 12px 10px;
+              background: #ff6600;
             }
           }
         }
