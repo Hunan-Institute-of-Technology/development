@@ -4,7 +4,7 @@
       <div class="container">
         <div class="topbar-user">
           <a href="/#/login">登录</a>
-          <a href="/#/sginip">注册</a>
+          <a href="/#/sginup">注册</a>
           <a href="javascript">消息通知</a>
           <a href="javascript">我的订单</a>
         </div>
