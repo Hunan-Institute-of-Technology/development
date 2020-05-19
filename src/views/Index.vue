@@ -88,8 +88,13 @@
           ></div>
         </swiper>
         <div class="nav-infor">
-          <div class="picture">
-            <img src="/imgs/picture.jpg" />
+          <div class="nav">
+            <div class="picture">
+              <img src="/imgs/picture.jpg" />
+            </div>
+            <div class="personal">
+              <a href="/#/personalcenter">个人中心</a>
+            </div>
           </div>
         </div>
       </div>
@@ -239,13 +244,21 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 298px;
+          width: 290px;
           height: 90px;
-          margin-left: 2px;
+          margin-left: 15px;
           border-bottom: #dcd4d4ad 1px ridge;
           img {
             height: 30px;
             width: 30px;
+          }
+        }
+        .personal {
+          width: 300px;
+          height: 20px;
+          a {
+            color: #333333;
+            font-weight: bold;
           }
         }
       }

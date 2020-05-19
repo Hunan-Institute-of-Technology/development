@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: "personal-center",
+  name: "personal-center"
 };
 </script>
