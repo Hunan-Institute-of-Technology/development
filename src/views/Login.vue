@@ -2,8 +2,8 @@
   <div class="loginbody">
     <div class="box">
       <h1>用户登录</h1>
-      <input type="text" placeholder="用户名"  v-model="username"/>
-      <input type="password" placeholder="密码" v-model="password"/>
+      <input type="text" placeholder="用户名" v-model="username" />
+      <input type="password" placeholder="密码" v-model="password" />
       <a class="submit" @click="goLogin" href="">登录</a>
     </div>
   </div>
@@ -13,25 +13,27 @@ export default {
   name: "Login",
   data() {
     return {
-      username:"",
-      password:""
+      username: "",
+      password: ""
     };
   },
-  methods:{
-    goLogin () {
-      let { username , password} = this
-      this.axios.post('/user/login',{
-        username,
-        password
-      }).then((res)=>{
-        this.$cookie.set('userId',res.id,{expires:'Session'});
-        this.$message.success('登录成功')        
-      })
+  methods: {
+    goLogin() {
+      let { username, password } = this;
+      this.axios
+        .post("/user/login", {
+          username,
+          password
+        })
+        .then(res => {
+          this.$cookie.set("userId", res.id, { expires: "Session" });
+          this.$message.success("登录成功");
+        });
     }
   }
 };
 </script>
-<style lang="scss" >
+<style lang="scss">
 .loginbody {
   margin: 0 auto;
   padding: 0;
@@ -39,11 +41,12 @@ export default {
   height: 800px;
   font-family: sans-serif;
   background-size: cover;
-  background-position:center;
-  background: #dcdde1 no-repeat;
+  background-position: center;
+  background: url("/imgs/login.jpg") no-repeat center;
+  background-size: cover;
 }
 .box {
-  border-radius:10px ;
+  border-radius: 10px;
   width: 300px;
   padding: 40px;
   position: absolute;
