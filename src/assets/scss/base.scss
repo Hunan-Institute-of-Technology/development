@@ -27,3 +27,11 @@ input{
 .clearfix::after{
    clear: both;
 }
+}
+.container{
+   position: relative;
+   width:1226px;
+   margin-right:auto;
+   margin-left:auto;
+ }
+
