@@ -15,7 +15,7 @@
         <div class="header-logo">
           <!-- 点击图标返回首页 -->
           <a href="/#/index">
-            <img src="/imgs/app1.png" alt="" />
+            <img src="/imgs/hu.jpg" alt="" />
           </a>
         </div>
         <div class="header-search">
@@ -53,7 +53,7 @@
           color: #b0b0b0;
           margin-right: 17px;
           &:hover {
-            color: #ff6600;
+            color: #de2006;
           }
         }
       }
@@ -61,6 +61,8 @@
   }
   .nav-header {
     height: 135px;
+    border-bottom: #dcd4d4ad 1px solid;
+    margin-bottom: 11px;
     .container {
       position: relative;
       width: 1226px;
@@ -85,7 +87,7 @@
         .search_box {
           display: flex;
           height: 50px;
-          border: 2px #ff6600 solid;
+          border: 2px #de2006 solid;
           border-radius: 13px;
           .sear-input {
             border: none;
@@ -94,16 +96,23 @@
             font-weight: bold;
             font-size: 16px;
             margin: 12px 50px 12px 20px;
+            &:after {
+              display: inline-block;
+              background: url("/imgs/icon-fd.png") no-repeat center;
+              background-size: contain;
+              width: 10px;
+              height: 15px;
+            }
           }
           .wrapper_sub {
-            background: #ff6600;
+            background: #de2006;
             .sub-input {
               display: inline-block;
               height: 26px;
               width: 60px;
               border: none;
               margin: 12px 10px;
-              background: #ff6600;
+              background: #de2006;
             }
           }
         }
