@@ -1,0 +1,7 @@
+@mixin Bgimg($w:0,$h:0,$imgurl:'',$bgsize:contain){
+    display:inline-block;
+    background:url($imgurl) no-repeat center;
+    background-size:$bgsize;
+    width:$w;
+    height:$h;
+}
