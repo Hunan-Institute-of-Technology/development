@@ -1,5 +1,32 @@
+
+.container{
+   position: relative;
+   width: 1226px;
+   margin-left: auto;
+   margin-right:auto ;
+}
+a img{
+   width: 100%;
+   height: 100%;
+}
 input{
+   outline: none;
    box-sizing: border-box;
+   font-size: 14px;
+}
+.fl{
+   float: left;
+}
+.fr{
+   float: right;
+}
+.clearfix::before,.clearfix::after{
+   display: table;
+   content: " ";
+}
+.clearfix::after{
+   clear: both;
+}
 }
 .container{
    position: relative;
@@ -7,3 +34,4 @@ input{
    margin-right:auto;
    margin-left:auto;
  }
+
