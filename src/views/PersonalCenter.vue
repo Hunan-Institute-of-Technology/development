@@ -27,20 +27,43 @@
             <p class="title">完善个人信息</p>
             <table style="margin: auto">
               <tr>
-                <th>昵称:</th>
+                <th>用户名:</th>
                 <th><input type="text" /></th>
               </tr>
               <tr>
-                <th>昵称:</th>
+                <th>性别:</th>
                 <th><input type="text" /></th>
               </tr>
               <tr>
-                <th>昵称:</th>
+                <th>生日:</th>
                 <th><input type="text" /></th>
-                <th>验证</th>
               </tr>
               <tr>
-                <th>昵称:</th>
+                <th>大学:</th>
+                <th><input type="text" /></th>
+              </tr>
+              <tr>
+                <th>地址:</th>
+                <th><input type="text" /></th>
+              </tr>
+              <tr>
+                <th>手机号:</th>
+                <th><input type="text" /></th>
+              </tr>
+              <tr>
+                <th>大学:</th>
+                <th><input type="text" /></th>
+              </tr>
+              <tr>
+                <th>邮箱:</th>
+                <th><input type="text" /></th>
+              </tr>
+              <tr>
+                <th>Q Q:</th>
+                <th><input type="text" /></th>
+              </tr>
+              <tr>
+                <th>微信:</th>
                 <th><input type="text" /></th>
               </tr>
             </table>
@@ -70,7 +93,8 @@ export default {
   },
   data() {
     return {
-      checkmenu: ""
+      checkmenu: "",
+      isFixed: false
     };
   }
 };
@@ -85,13 +109,11 @@ export default {
       width: 200px;
       height: 600px;
       background: blanchedalmond;
-      // position: relative;
-      // top: 5px;
       .wrapper {
         text-align: center;
         .per-log {
           margin-bottom: 60px;
-          p{
+          p {
             margin-bottom: 8px;
           }
           img {
@@ -114,6 +136,7 @@ export default {
             border-top: 2px solid #e5e5e5;
             height: 60px;
             line-height: 60px;
+            cursor: pointer;
             &:last-child {
               border-bottom: 2px solid #e5e5e5;
             }
@@ -125,7 +148,7 @@ export default {
       padding-top: 15px;
       width: 1026px;
       background: yellowgreen;
-      height: 800px;
+      // height: 800px;
       .improve-message {
         text-align: center;
         .title {
