@@ -34,9 +34,9 @@ const routes = [
     component: SginUp
   },
   {
-    path:"/personalcenter",
-    name:"PersonalCenter",
-    component:PersonalCenter
+    path: "/personalcenter",
+    name: "PersonalCenter",
+    component: PersonalCenter
   }
 ];
 
