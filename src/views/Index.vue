@@ -72,11 +72,6 @@
               <img src="/imgs/swiper3.jpg" />
             </a>
           </swiper-slide>
-          <swiper-slide id="slider3">
-            <a href="javascript;:">
-              <img src="/imgs/swiper4.jpg" />
-            </a>
-          </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
           <div
             class="swiper-button-prev  swiper-button-white"
@@ -236,30 +231,30 @@ export default {
           width: 100%;
         }
       }
-      .nav-infor {
+    }
+    .nav-infor {
+      display: flex;
+      width: 300px;
+      border-left: #de2006 1px solid;
+      .picture {
         display: flex;
-        width: 300px;
-        border-left: #de2006 1px solid;
-        .picture {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 290px;
-          height: 90px;
-          margin-left: 15px;
-          border-bottom: #dcd4d4ad 1px ridge;
-          img {
-            height: 30px;
-            width: 30px;
-          }
+        justify-content: center;
+        align-items: center;
+        width: 290px;
+        height: 90px;
+        margin-left: 15px;
+        border-bottom: #dcd4d4ad 1px ridge;
+        img {
+          height: 30px;
+          width: 30px;
         }
-        .personal {
-          width: 300px;
-          height: 20px;
-          a {
-            color: #333333;
-            font-weight: bold;
-          }
+      }
+      .personal {
+        width: 300px;
+        height: 20px;
+        a {
+          color: #333333;
+          font-weight: bold;
         }
       }
     }

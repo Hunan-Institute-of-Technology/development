@@ -78,12 +78,15 @@ export default {
 <style lang="scss">
 .personal {
   .personal-body {
-    margin-top: 5px;
+    margin-top: 8px;
+    position: absolute;
     .per-left {
       padding-top: 15px;
       width: 200px;
-      height: 800px;
+      height: 600px;
       background: blanchedalmond;
+      // position: relative;
+      // top: 5px;
       .wrapper {
         text-align: center;
         .per-log {
