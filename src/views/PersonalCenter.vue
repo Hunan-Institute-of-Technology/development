@@ -13,11 +13,20 @@
             </div>
             <div class="per-menu">
               <ul>
-                <li>我的消息</li>
-                <li>关注列表</li>
-                <li @click="checkmenu = 'setupper'">个人设置</li>
-                <li @click="checkmenu = 'release'">发布商品</li>
-                <li @click="checkmenu = 'unused'">我的闲置</li>
+                <li><i class="infor"></i>我的消息</li>
+                <li><i class="star"></i>关注列表</li>
+                <li @click="checkmenu = 'setupper'">
+                  <i class="setting"></i>
+                  个人设置
+                </li>
+                <li @click="checkmenu = 'release'">
+                  <i class="release-items"></i>
+                  发布商品
+                </li>
+                <li @click="checkmenu = 'unused'">
+                  <i class="idle-items"></i>
+                  我的闲置
+                </li>
               </ul>
             </div>
           </div>
@@ -100,6 +109,7 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "./../assets/scss/mixin.scss";
 .personal {
   .personal-body {
     margin-top: 8px;
@@ -139,6 +149,24 @@ export default {
             cursor: pointer;
             &:last-child {
               border-bottom: 2px solid #e5e5e5;
+            }
+            i {
+              margin-right: 3px;
+            }
+            .infor {
+              @include Bgimg(24px, 24px, "/imgs/icon-per-5.png", contain);
+            }
+            .star {
+              @include Bgimg(24px, 24px, "/imgs/icon-per-4.png", contain);
+            }
+            .setting {
+              @include Bgimg(24px, 24px, "/imgs/icon-per-3.png", contain);
+            }
+            .release-items {
+              @include Bgimg(24px, 24px, "/imgs/icon-per-1.png", contain);
+            }
+            .idle-items {
+              @include Bgimg(24px, 24px, "/imgs/icon-per-2.png", contain);
             }
           }
         }
