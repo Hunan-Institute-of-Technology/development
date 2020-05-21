@@ -5,7 +5,7 @@
         <div class="nav-header-logo">
           <a href="/#/index"></a>
         </div>
-        <h2>注册小米账号</h2>
+        <h2>注册账号</h2>
         <div class="sginupform">
           <div class="country">
             <span>国家/地区</span>
@@ -36,7 +36,7 @@
           </div>
           <div class="info">
             <span class="checkbox" :class="{'checked':checked}" @click="changcheck"></span>
-            已阅读并同意：小米
+            已同意本公司
             <span>用户协议</span> 和
             <span>隐私政策</span>
           </div>
