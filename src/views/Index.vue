@@ -93,6 +93,42 @@
           </div>
         </div>
       </div>
+      <div class="product">
+        <div class="product-menu">
+          <div class="product-item">
+            <span>最新发布</span>
+            <div class="children" v-if="child_num == 1" @click="change_laster">
+              <div v-for="(item, i) in productList" :key="i" class="pro-menu">
+                <div v-for="(pro, j) in item" :key="j" class="pro-item">
+                  <div class="pro-img">
+                    <img :src="pro ? pro.img : '/imgs/menu1.jpg'" />
+                  </div>
+                  <div class="pro-infor">
+                    <p>￥{{ pro ? pro.price : "80" }}</p>
+                    <p>{{ pro ? pro.name : "四肢松鼠" }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-item">
+            <span>猜你喜欢</span>
+            <div class="children" v-if="child_num == 2" @click="change_favor">
+              <div v-for="(item, i) in productList" :key="i" class="pro-menu">
+                <div v-for="(pro, j) in item" :key="j" class="pro-item">
+                  <div class="pro-img">
+                    <img :src="'pro.img'" />
+                  </div>
+                  <div class="pro-infor">
+                    <p>￥{{ pro.price }}</p>
+                    <p>{{ pro.img }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -107,6 +143,7 @@ export default {
   },
   data() {
     return {
+      child_num: 1,
       swiperOption: {
         autoplay: true,
         loop: true,
@@ -130,22 +167,59 @@ export default {
         [
           {
             img: "/imgs/menu1.jpg",
-            name: "三只松鼠"
+            name: "三只松鼠",
+            price: "40"
           },
           {
             img: "/imgs/menu2.jpg",
-            name: "三只松鼠"
+            name: "三只松鼠",
+            price: "50"
           },
           {
             img: "/imgs/menu3.jpg",
-            name: "童装"
+            name: "童装",
+            price: "30"
           }
         ],
         [0, 0, 0],
         [0, 0, 0],
         [0, 0, 0]
+      ],
+      productList: [
+        [
+          {
+            img: "/imgs/menu1.jpg",
+            name: "三只松鼠",
+            price: "40"
+          },
+          {
+            img: "/imgs/menu2.jpg",
+            name: "三只松鼠",
+            price: "50"
+          },
+          {
+            img: "/imgs/menu3.jpg",
+            name: "童装",
+            price: "30"
+          },
+          {
+            img: "/imgs/menu3.jpg",
+            name: "童装",
+            price: "30"
+          }
+        ],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
       ]
     };
+  },
+  methods: {
+    change_laster() {
+      this.chid_num = 1;
+    },
+    change_favor() {
+      this.chid_num = 2;
+    }
   }
 };
 </script>
@@ -157,6 +231,7 @@ export default {
       display: flex;
       height: 450px;
       border: 1px #de2006 solid;
+      // <-----------------------主题栏---------------------->
       .nav-menu {
         display: inline-block;
         width: 200px;
@@ -205,7 +280,6 @@ export default {
               height: 130px;
               justify-content: space-between;
               li {
-                // position: absolute;
                 height: 130px;
                 flex: 1;
                 z-index: 8;
@@ -223,6 +297,7 @@ export default {
           }
         }
       }
+      // <-----------------------轮播图---------------------->
       .swiper-container {
         display: inline-block;
         width: 710px;
@@ -231,30 +306,88 @@ export default {
           width: 100%;
         }
       }
-    }
-    .nav-infor {
-      display: flex;
-      width: 300px;
-      border-left: #de2006 1px solid;
-      .picture {
+      // <-----------------------右边框---------------------->
+      .nav-infor {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 290px;
-        height: 90px;
-        margin-left: 15px;
-        border-bottom: #dcd4d4ad 1px ridge;
-        img {
-          height: 30px;
-          width: 30px;
+        width: 300px;
+        border-left: #de2006 1px solid;
+        .picture {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 290px;
+          height: 90px;
+          margin-left: 15px;
+          border-bottom: #dcd4d4ad 1px ridge;
+          img {
+            height: 30px;
+            width: 30px;
+          }
+        }
+        .personal {
+          width: 300px;
+          height: 20px;
+          a {
+            color: #333333;
+            font-weight: bold;
+          }
         }
       }
-      .personal {
-        width: 300px;
-        height: 20px;
-        a {
-          color: #333333;
+    }
+    // <-----------------------产品栏---------------------->
+    .product {
+      position: relative;
+      margin-top: 50px;
+      margin-bottom: 40px;
+      width: 1226px;
+      height: 950px;
+      border-bottom: #de2006 1px solid;
+      .product-menu {
+        display: flex;
+        .product-item {
+          width: 80px;
+          height: 30px;
+          margin-right: 16px;
+          font-size: 16px;
           font-weight: bold;
+          color: #333333;
+          cursor: pointer;
+          &:hover {
+            border-bottom: #de2006 3px solid;
+          }
+          .children {
+            position: absolute;
+            left: 0px;
+            top: 10px;
+            margin-top: 25px;
+            width: 1226px;
+            border: #333333 1px solid;
+            .pro-menu {
+              display: flex;
+              margin-top: 5px;
+              justify-content: space-between;
+              .pro-item {
+                width: 280px;
+                height: 280px;
+                border: #de2006 1px solid;
+                margin-left: 10px;
+                text-align: center;
+                &:last-children {
+                  margin-left: 0px;
+                }
+                .pro-img {
+                  margin-top: 5px;
+                  margin-left: 11px;
+                  width: 225px;
+                  height: 225px;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
