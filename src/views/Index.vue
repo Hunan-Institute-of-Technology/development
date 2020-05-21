@@ -93,9 +93,11 @@
             </div>
             <!-- --------------- -->
             <div class="personal">
+              <i class="per-center"></i>
               <a href="/#/personalcenter">个人中心</a>
             </div>
             <div class="shop">
+              <i class="shopping"></i>
               <a href="/#/personalcenter">商城</a>
             </div>
           </div>
@@ -261,10 +263,7 @@ export default {
               top: 15px;
               content: "";
               display: inline-block;
-              background: url("/imgs/icon-menu.png") no-repeat center;
-              background-size: contain;
-              width: 10px;
-              height: 15px;
+              @include Bgimg(10px, 15px, "/imgs/icon-menu.png", contain);
             }
           }
           &:hover {
@@ -333,7 +332,7 @@ export default {
           line-height: 30px;
           margin: 15px 0px 15px 15px;
           a {
-            display: inline-block;
+            display: absolute;
             font-size: 17px;
             color: #333333;
             font-weight: bold;
@@ -342,18 +341,13 @@ export default {
           }
         }
         .personal {
-          a:before {
-            content: "";
-            margin-right: 3px;
-            @include Bgimg(25px, 25px, "/imgs/icon-personal.png");
+          i {
+             @include Bgimg(25px, 25px, "/imgs/icon-personal.png", contain);
           }
         }
         .shop {
-          a:before {
-            content: "";
-            margin-top: 11px;
-            margin-right: 3px;
-            @include Bgimg(25px, 25px, "/imgs/icon-shopping.png");
+          i {
+            @include Bgimg(25px, 25px, "/imgs/icon-shopping.png", contain);
           }
         }
       }
