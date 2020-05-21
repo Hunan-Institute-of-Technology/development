@@ -84,11 +84,19 @@
         </swiper>
         <div class="nav-infor">
           <div class="nav">
-            <div class="picture">
-              <img src="/imgs/picture.jpg" />
+            <div class="demo-type">
+              <div>
+                <el-avatar
+                  src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+                ></el-avatar>
+              </div>
             </div>
+            <!-- --------------- -->
             <div class="personal">
               <a href="/#/personalcenter">个人中心</a>
+            </div>
+            <div class="shop">
+              <a href="/#/personalcenter">商城</a>
             </div>
           </div>
         </div>
@@ -308,10 +316,9 @@ export default {
       }
       // <-----------------------右边框---------------------->
       .nav-infor {
-        display: flex;
         width: 300px;
         border-left: #de2006 1px solid;
-        .picture {
+        .demo-type {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -319,17 +326,34 @@ export default {
           height: 90px;
           margin-left: 15px;
           border-bottom: #dcd4d4ad 1px ridge;
-          img {
-            height: 30px;
-            width: 30px;
+        }
+        .personal,
+        .shop {
+          height: 30px;
+          line-height: 30px;
+          margin: 15px 0px 15px 15px;
+          a {
+            display: inline-block;
+            font-size: 17px;
+            color: #333333;
+            font-weight: bold;
+            margin-left: 4px;
+
           }
         }
         .personal {
-          width: 300px;
-          height: 20px;
-          a {
-            color: #333333;
-            font-weight: bold;
+          a:before {
+            content: "";
+            margin-right: 3px;
+            @include Bgimg(25px, 25px, "/imgs/icon-personal.png");
+          }
+        }
+        .shop {
+          a:before {
+            content: "";
+            margin-top: 11px;
+            margin-right: 3px;
+            @include Bgimg(25px, 25px, "/imgs/icon-shopping.png");
           }
         }
       }
