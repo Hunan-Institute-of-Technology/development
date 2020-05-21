@@ -84,11 +84,21 @@
         </swiper>
         <div class="nav-infor">
           <div class="nav">
-            <div class="picture">
-              <img src="/imgs/picture.jpg" />
+            <div class="demo-type">
+              <div>
+                <el-avatar
+                  src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+                ></el-avatar>
+              </div>
             </div>
+            <!-- --------------- -->
             <div class="personal">
+              <i class="per-center"></i>
               <a href="/#/personalcenter">个人中心</a>
+            </div>
+            <div class="shop">
+              <i class="shopping"></i>
+              <a href="/#/personalcenter">商城</a>
             </div>
           </div>
         </div>
@@ -253,10 +263,7 @@ export default {
               top: 15px;
               content: "";
               display: inline-block;
-              background: url("/imgs/icon-menu.png") no-repeat center;
-              background-size: contain;
-              width: 10px;
-              height: 15px;
+              @include Bgimg(10px, 15px, "/imgs/icon-menu.png", contain);
             }
           }
           &:hover {
@@ -308,10 +315,9 @@ export default {
       }
       // <-----------------------右边框---------------------->
       .nav-infor {
-        display: flex;
         width: 300px;
         border-left: #de2006 1px solid;
-        .picture {
+        .demo-type {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -319,17 +325,29 @@ export default {
           height: 90px;
           margin-left: 15px;
           border-bottom: #dcd4d4ad 1px ridge;
-          img {
-            height: 30px;
-            width: 30px;
+        }
+        .personal,
+        .shop {
+          height: 30px;
+          line-height: 30px;
+          margin: 15px 0px 15px 15px;
+          a {
+            display: absolute;
+            font-size: 17px;
+            color: #333333;
+            font-weight: bold;
+            margin-left: 4px;
+
           }
         }
         .personal {
-          width: 300px;
-          height: 20px;
-          a {
-            color: #333333;
-            font-weight: bold;
+          i {
+             @include Bgimg(25px, 25px, "/imgs/icon-personal.png", contain);
+          }
+        }
+        .shop {
+          i {
+            @include Bgimg(25px, 25px, "/imgs/icon-shopping.png", contain);
           }
         }
       }
