@@ -13,7 +13,10 @@
             </div>
             <div class="per-menu">
               <ul>
-                <li><i class="infor"></i>我的消息</li>
+                <li @click="checkmenu = 'information'">
+                  <i class="infor"></i>
+                  我的消息
+                </li>
                 <li><i class="star"></i>关注列表</li>
                 <li @click="checkmenu = 'setupper'">
                   <i class="setting"></i>
@@ -31,7 +34,35 @@
             </div>
           </div>
         </div>
-        <div class="fr per-right">
+         <div class="fr per-right">
+          <div class="my-infor" v-show="checkmenu == 'information'">
+            <div class="infor-box">
+              <div class="infor-header">
+                <p>我的消息</p>
+              </div>
+              <div class="wrapper">
+                <el-scrollbar>
+                  <ul
+                    class="infinite-list"
+                    v-infinite-scroll="load"
+                    style="overflow:auto"
+                  >
+                    <li
+                      v-for="(i, index) in count"
+                      class="infinite-list-item"
+                      :key="index"
+                    >
+                      <p>{{ i }}</p>
+                      <div class="item-replay">
+                        <span>标记已读</span>
+                        <a href="javascript:;">回复</a>
+                      </div>
+                    </li>
+                </ul>
+                </el-scrollbar>
+              </div>
+            </div>
+          </div>
           <div class="improve-message" v-show="checkmenu == 'setupper'">
             <p class="title">完善个人信息</p>
             <table style="margin: auto">
@@ -127,13 +158,22 @@
                     <el-input v-model="form.name" clearable></el-input>
                   </el-form-item>
                   <el-form-item label="商品类别">
-                    <el-select v-model="form.region" placeholder="请选择商品类别">
+                    <el-select
+                      v-model="form.region"
+                      placeholder="请选择商品类别"
+                    >
                       <el-option label="男装鞋包" value="manshoe"></el-option>
-                      <el-option label="女装鞋包" value="femaleshoe"></el-option>
+                      <el-option
+                        label="女装鞋包"
+                        value="femaleshoe"
+                      ></el-option>
                       <el-option label="书籍资料" value="book"></el-option>
                       <el-option label="护肤彩妆" value="Skincare"></el-option>
                       <el-option label="汇吃美食" value="food"></el-option>
-                      <el-option label="时尚配饰" value="Accessories"></el-option>
+                      <el-option
+                        label="时尚配饰"
+                        value="Accessories"
+                      ></el-option>
                       <el-option label="寝室用品" value="Bedding"></el-option>
                     </el-select>
                   </el-form-item>
@@ -148,7 +188,11 @@
                     </el-col>
                   </el-form-item>
                   <el-form-item label="接受议价">
-                    <el-switch v-model="form.delivery" active-text="接受" inactive-text="不接受"></el-switch>
+                    <el-switch
+                      v-model="form.delivery"
+                      active-text="接受"
+                      inactive-text="不接受"
+                    ></el-switch>
                   </el-form-item>
                   <el-form-item label="商品特点">
                     <el-checkbox-group v-model="form.type">
@@ -170,7 +214,9 @@
                     <el-input type="textarea" v-model="form.desc"></el-input>
                   </el-form-item>
                   <el-form-item>
-                    <el-button type="primary" @click="onSubmit">立即创建</el-button>
+                    <el-button type="primary"
+                      >立即创建</el-button
+                    >
                     <el-button>取消</el-button>
                   </el-form-item>
                 </el-form>
@@ -195,6 +241,9 @@ export default {
     return {
       checkmenu: "release",
       isFixed: false,
+      dialogImageUrl: "",
+      dialogVisible: false,
+      count: 13,
       form: {
         name: "", //商品名称
         region: "",
@@ -217,15 +266,18 @@ export default {
       }
     };
   },
-   methods: {
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
-      }
+  methods: {
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
+    load() {
+      this.count += 2;
     }
+  }
 };
 </script>
 <style lang="scss">
@@ -296,7 +348,65 @@ export default {
       padding-top: 15px;
       width: 1026px;
       background: yellowgreen;
-      // height: 800px;
+      //  < -----------------------我的消息---------------------->
+      .my-infor {
+        .infor-box {
+          width: 500px;
+          height: 650px;
+          margin-left: 50px;
+          margin-bottom: 70px;
+          background-color: #e0e0e0;
+          .infor-header {
+            height: 55px;
+            line-height: 55px;
+            background-color: rgb(248, 245, 245);
+            margin-bottom: 10px;
+            p {
+              margin-left: 5px;
+              font-size: 16px;
+              font-weight: bold;
+            }
+          }
+          .wrapper {
+            width: 480px;
+            height: 550px;
+            .el-scrollbar {
+              height: 100%;
+              .el-scrollbar_wrap {
+                overflow-x: hidden;
+              }
+              .infinite-list {
+                .infinite-list-item {
+                  width: 440px;
+                  height: 70px;
+                  border: #898181 1px solid;
+                  margin-top: 4px;
+                  margin-left: 6px;
+                  border-radius: 9px;
+                  p {
+                    height: 40px;
+                  }
+                  .item-replay {
+                    // width: 200px;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 13px;
+                    span {
+                      color: #cc8975;
+                      margin-right: 4px;
+                    }
+                    a {
+                      color: #60c17f;
+                      font-size: 13px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      //  < -----------------------个人设置---------------------->
       .improve-message {
         text-align: center;
         .title {
@@ -318,12 +428,12 @@ export default {
           margin-top: 40px;
         }
       }
+      //  < -----------------------发布物品---------------------->
       .release-product {
         .pullimg {
-          
           background: blue;
           width: 400px;
-          .despicture{
+          .despicture {
             text-align: center;
             font-size: 28px;
           }
