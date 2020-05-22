@@ -349,7 +349,7 @@ export default {
       }
       padding-top: 15px;
       width: 1026px;
-      // background: yellowgreen;
+      background: yellowgreen;
       // height: 800px;
       .improve-message {
         text-align: center;
