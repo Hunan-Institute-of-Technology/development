@@ -13,8 +13,12 @@
             </div>
             <div class="per-menu">
               <ul>
-                <li><i class="infor"></i>我的消息</li>
-                <li><i class="star"></i>关注列表</li>
+                <li>
+                  <i class="infor"></i>我的消息
+                </li>
+                <li>
+                  <i class="star"></i>关注列表
+                </li>
                 <li @click="checkmenu = 'setupper'">
                   <i class="setting"></i>
                   个人设置
@@ -33,6 +37,10 @@
         </div>
         <div class="fr per-right">
           <div class="improve-message" v-show="checkmenu == 'setupper'">
+            <div class="menu-title">
+              <p >个人设置</p>
+              <span></span>
+            </div>
             <p class="title">完善个人信息</p>
             <table style="margin: auto">
               <tr>
@@ -100,13 +108,14 @@
             <div class="btn btn-preserve">保存修改信息</div>
           </div>
           <div class="release-product clearfix" v-show="checkmenu == 'release'">
-            发布商品
-            <span>
-              <hr />
-            </span>
+            <div class="menu-title">
+              <p >发布商品</p>
+              <span></span>
+            </div>
+
             <div class="pullimg fl">
               <!-- <img src="imgs/menu3.jpg" alt />
-              <div class="btn">上传商品图片</div> -->
+              <div class="btn">上传商品图片</div>-->
               <p class="despicture">添加图片描述</p>
               <el-upload
                 action="https://jsonplaceholder.typicode.com/posts/"
@@ -177,7 +186,32 @@
               </div>
             </div>
           </div>
-          <div class="my-unused" v-show="checkmenu == 'unused'">我的闲置</div>
+          <div class="my-unused" v-show="checkmenu == 'unused'">
+            <div class="menu-title">
+              <p >我的闲置</p>
+              <span></span>
+            </div>
+            <div class="unusedbody">
+              <div class="unuser-item" v-for="(item,index) of 3" :key=index>
+                <div class="userimg">
+                  <img src="imgs/hearimg.jpg" alt />
+                </div>
+                <p class="product-title">商品标题</p>
+                <p class="product-des">商品描述东西质量非常好，与卖家描述的完全一致，非常满意,真的很喜欢，完全超出期望值，发货速度非常快，包装非常仔细、严实，物流公司服务态度很好，运送速度很快，很满意的一次购物。</p>
+                <div class="product-img">
+                  <img src="/imgs/menu1.jpg" alt />
+                  <img src="/imgs/menu1.jpg" alt />
+                  <img src="/imgs/menu1.jpg" alt />
+                </div>
+                <div class="handleproduct clearfix">
+                  <span class="fl"><i class="delete"></i> 编辑</span>
+                  <span class="fl"><i class="edit"></i>删除</span>
+                  <span class="fr"><i class="time"></i>2020/05/22</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -193,8 +227,10 @@ export default {
   },
   data() {
     return {
-      checkmenu: "release",
+      checkmenu: "unused",
       isFixed: false,
+      dialogImageUrl: "",
+      dialogVisible: false,
       form: {
         name: "", //商品名称
         region: "",
@@ -217,15 +253,18 @@ export default {
       }
     };
   },
-   methods: {
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
-      }
+  methods: {
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
+    onSubmit() {
+      //表单提交事件
     }
+  }
 };
 </script>
 <style lang="scss">
@@ -262,7 +301,7 @@ export default {
         }
         .per-menu {
           li {
-            font-size: 16px;
+            font-size: 18px;
             border-top: 2px solid #e5e5e5;
             height: 60px;
             line-height: 60px;
@@ -271,7 +310,9 @@ export default {
               border-bottom: 2px solid #e5e5e5;
             }
             i {
-              margin-right: 3px;
+              margin-right: 5px;
+              vertical-align: middle;
+              margin-top: -3px;
             }
             .infor {
               @include Bgimg(24px, 24px, "/imgs/icon-per-5.png", contain);
@@ -293,12 +334,28 @@ export default {
       }
     }
     .per-right {
+      position: relative;
+      .menu-title {
+        font-size: 32px;
+        margin-bottom: 25px;
+        span{
+         position: absolute;
+         height: 1px;
+         width: 87%;
+         background: #e5e5e5;
+         top: 35px;
+         left: 132px;
+        }
+      }
       padding-top: 15px;
       width: 1026px;
-      background: yellowgreen;
+      // background: yellowgreen;
       // height: 800px;
       .improve-message {
         text-align: center;
+        .menu-title{
+          text-align: left;
+        }
         .title {
           font-size: 30px;
           padding-bottom: 50px;
@@ -320,10 +377,9 @@ export default {
       }
       .release-product {
         .pullimg {
-          
           background: blue;
           width: 400px;
-          .despicture{
+          .despicture {
             text-align: center;
             font-size: 28px;
           }
@@ -331,6 +387,71 @@ export default {
         .pulltext {
           .pullbody {
             margin-right: 100px;
+          }
+        }
+      }
+      .my-unused {
+        .unusedbody {
+          .unuser-item {
+            position: relative;
+            width: 800px;
+            margin: 0 auto 25px;
+            background: #e5e5e5;
+            border-radius: 5px;
+            .userimg {
+              position: absolute;
+              left: -50px;
+              top: 10px;
+              img {
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+              }
+            }
+            .product-title{
+              font-size: 24px;
+              padding-top: 40px;
+              margin-left: 62px;
+            }
+            .product-des{
+              font-size: 16px;
+              margin-left: 62px;
+              margin-top: 45px;
+            }
+            .product-img{
+              margin-top: 45px;
+              margin-left: 62px;
+              img{
+                height: 200px;
+                width: 200px;
+                margin-left: 20px;
+              }
+            }
+            .handleproduct{
+              margin-top: 15px;
+              font-size: 22px;
+              span{
+                margin-right: 15px;
+                
+                margin-bottom: 15px;
+              }
+              i{
+                vertical-align: middle;
+                margin-top: -3px;
+                
+              }
+              .delete{
+                margin-right: -9px;
+                margin-top: -3px;
+                @include Bgimg(28px, 28px, "/imgs/icon/delete.png", contain);
+              }
+              .edit{
+                @include Bgimg(24px, 24px, "/imgs/icon/edit.png", contain);
+              }
+              .time{
+                @include Bgimg(24px, 24px, "/imgs/icon/time.png", contain);
+              }
+            }
           }
         }
       }
