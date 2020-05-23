@@ -496,6 +496,7 @@ export default {
           }
         }
       }
+      //  < -----------------------我的闲置---------------------->
       .my-unused {
         .unusedbody {
           .unuser-item {
@@ -536,10 +537,12 @@ export default {
             .handleproduct{
               margin-top: 15px;
               font-size: 22px;
+              &:last-child{
+                font-size: 14px;
+              }
               span{
-                margin-right: 15px;
-                
-                margin-bottom: 15px;
+                margin-right: 15px;               
+                margin-bottom: 10px;
               }
               i{
                 vertical-align: middle;
@@ -547,7 +550,7 @@ export default {
                 
               }
               .delete{
-                margin-right: -9px;
+                margin-right: -6px;
                 margin-top: -3px;
                 @include Bgimg(28px, 28px, "/imgs/icon/delete.png", contain);
               }
@@ -555,6 +558,7 @@ export default {
                 @include Bgimg(24px, 24px, "/imgs/icon/edit.png", contain);
               }
               .time{
+                
                 @include Bgimg(24px, 24px, "/imgs/icon/time.png", contain);
               }
             }
