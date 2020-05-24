@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Index from "../views/Index.vue";
 import SginUp from "../views/SginUp.vue";
+import Product from "../views/Product.vue";
 import PersonalCenter from "../views/PersonalCenter.vue";
 
 Vue.use(VueRouter);
@@ -20,6 +21,11 @@ const routes = [
         path: "/index",
         name: "index",
         component: Index
+      },
+      {
+        path: '/product/:id',
+        name: 'product',
+        component: Product
       }
     ]
   },
