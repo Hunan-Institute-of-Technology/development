@@ -4,7 +4,27 @@
       <div class="product-head clearfix">
         <p class="heade-title">二级链接</p>
         <div class="swiper-img fl">
-          <img src="/imgs/menu1.jpg" alt />
+          <swiper :options="swiperOption">
+            <swiper-slide>
+              <a href="javascript:;">
+                <img src="/imgs/swiper1.jpg" />
+              </a>
+            </swiper-slide>
+            <swiper-slide>
+              <a href="javascript:;">
+                <img src="/imgs/swiper2.jpg" />
+              </a>
+            </swiper-slide>
+            <swiper-slide>
+              <a href="javascript:;">
+                <img src="/imgs/swiper3.jpg" />
+              </a>
+            </swiper-slide>
+            <div class="swiper-pagination" slot="pagination"></div>
+            <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+            <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+          </swiper>
+          
         </div>
         <div class="seller fl">
           <p class="product-title">商品标题</p>
@@ -36,8 +56,38 @@
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import "swiper/css/swiper.css";
 export default {
-  name: "product"
+  name: "product",
+  components: {
+    Swiper,
+    SwiperSlide
+  },
+  data() {
+    return {
+      swiperOption: {
+        grabCursor : true,
+        autoplay: true,
+        loop: true,
+        effect: "fade",
+        cubeEffect: {
+          slideShadows: true,
+          shadow: true,
+          shadowOffset: 100,
+          shadowScale: 0.6
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: "true"
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
+        }
+      }
+    };
+  }
 };
 </script>
 <style lang="scss">
@@ -50,8 +100,11 @@ export default {
     }
     .swiper-img {
       width: 750px;
-      height: 400px;
+      height: 420px;
       background: #2ecc71;
+      img{
+        height: 420px;
+      }
     }
     background: #fff;
     .seller {
