@@ -51,9 +51,11 @@ export default {
     .swiper-img {
       width: 750px;
       height: 400px;
+      background: #2ecc71;
     }
     background: #fff;
     .seller {
+      margin-left: 25px;
       .product-title {
         font-size: 26px;
       }
