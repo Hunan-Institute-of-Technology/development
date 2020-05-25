@@ -59,17 +59,17 @@
         <swiper :options="swiperOption">
           <swiper-slide>
             <a href="javascript;:">
-              <img src="/imgs/swiper1.jpg" />
+              <img src="/imgs/swiper-1.jpg" />
             </a>
           </swiper-slide>
           <swiper-slide>
             <a href="javascript;:">
-              <img src="/imgs/swiper2.jpg" />
+              <img src="/imgs/swiper-2.jpg" />
             </a>
           </swiper-slide>
           <swiper-slide>
             <a href="javascript;:">
-              <img src="/imgs/swiper3.jpg" />
+              <img src="/imgs/swiper-3.jpg" />
             </a>
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
@@ -246,6 +246,8 @@ export default {
         display: inline-block;
         width: 200px;
         border-right: #de2006 1px solid;
+        position: absolute;
+        z-index: 9;
         .menu-item {
           display: flex;
           height: 50px;
@@ -276,7 +278,8 @@ export default {
             display: none;
             position: absolute;
             z-index: 2;
-            width: 720px;
+            // width: 720px;
+            width: 860px;
             height: 450px;
             left: 200px;
             top: 0;
@@ -306,22 +309,28 @@ export default {
       }
       // <-----------------------轮播图---------------------->
       .swiper-container {
-        display: inline-block;
-        width: 710px;
+        // display: inline-block;
+        width: 1060px;
+        height: 450px;
+        .swiper-button-prev {
+          left: 200px;
+        }
         img {
-          height: 100%;
           width: 100%;
+          height: 100%;
         }
       }
       // <-----------------------右边框---------------------->
       .nav-infor {
-        width: 300px;
+        // width: 300px;
+        width: 160px;
         border-left: #de2006 1px solid;
         .demo-type {
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 290px;
+          // width: 290px;
+          width: 80px;
           height: 90px;
           margin-left: 15px;
           border-bottom: #dcd4d4ad 1px ridge;

@@ -43,7 +43,6 @@ export default {
   background-size: cover;
   background-position: center;
   background: url("/imgs/login.jpg") no-repeat center;
-  background-size: cover;
 }
 .box {
   border-radius: 10px;

@@ -23,10 +23,10 @@
             <input
               class="sear-input"
               type="text"
-              placeholder="搜索想要的商品"
+              placeholder="what  are  you  looking  for?"
             />
             <span class="wrapper_sub">
-              <input class="sub-input" type="submit" value="搜索" />
+              <input class="sub-input" type="submit" value="" />
             </span>
           </form>
         </div>
@@ -35,6 +35,7 @@
   </div>
 </template>
 <style lang="scss">
+@import "./../assets/scss/mixin.scss";
 .header {
   .nav-topbar {
     height: 39px;
@@ -61,18 +62,16 @@
   }
   .nav-header {
     height: 135px;
+    // line-height: 135px;
     border-bottom: #dcd4d4ad 1px solid;
     margin-bottom: 11px;
     .container {
-      position: relative;
-      width: 1226px;
       display: flex;
       align-items: center;
-      margin-right: auto;
-      margin-left: auto;
       .header-logo {
-        margin-right: 50px;
-        padding-top: 10px;
+        margin-left: 15px;
+        margin-right: 70px;
+        padding-top: 15px;
         a {
           display: inline-block;
           width: 80px;
@@ -86,16 +85,16 @@
       .header-search {
         .search_box {
           display: flex;
-          height: 50px;
-          border: 2px #de2006 solid;
-          border-radius: 13px;
+          margin-top: 36px;
+          background-color: #6d8ae4;
           .sear-input {
-            border: none;
-            height: 26px;
-            width: 500px;
+            height: 50px;
+            width: 560px;
             font-weight: bold;
             font-size: 16px;
-            margin: 12px 50px 12px 20px;
+            padding-left: 6px;
+            margin: 9px 25px 9px 15px;
+            border-radius: 6px;
             &:after {
               display: inline-block;
               background: url("/imgs/icon-fd.png") no-repeat center;
@@ -105,14 +104,15 @@
             }
           }
           .wrapper_sub {
-            background: #de2006;
+            width: 70px;
+            height: 50px;
+            margin-top: 5px;
             .sub-input {
               display: inline-block;
-              height: 26px;
-              width: 60px;
+              // height: 50px;
               border: none;
-              margin: 12px 10px;
-              background: #de2006;
+              margin: 5px 15px;
+              @include Bgimg(40px, 40px, "/imgs/icon/icon-search.png", contain);
             }
           }
         }
