@@ -7,17 +7,17 @@
           <swiper :options="swiperOption">
             <swiper-slide>
               <a href="javascript:;">
-                <img src="/imgs/swiper1.jpg" />
+                <img src="/imgs/swiper-1.jpg" />
               </a>
             </swiper-slide>
             <swiper-slide>
               <a href="javascript:;">
-                <img src="/imgs/swiper2.jpg" />
+                <img src="/imgs/swiper-2.jpg" />
               </a>
             </swiper-slide>
             <swiper-slide>
               <a href="javascript:;">
-                <img src="/imgs/swiper3.jpg" />
+                <img src="/imgs/swiper-3.jpg" />
               </a>
             </swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
