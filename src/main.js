@@ -15,7 +15,7 @@ Vue.use(ElementUI);
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
-axios.interceptors.response.use(function (response) {
+axios.interceptors.response.use(function(response) {
   let res = response.data;
   if (res.status == 0) {
     return res.data;
