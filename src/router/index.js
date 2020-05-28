@@ -6,8 +6,8 @@ import Index from "../views/Index.vue";
 import SginUp from "../views/SginUp.vue";
 import Product from "../views/Product.vue";
 import PersonalCenter from "../views/PersonalCenter.vue";
+import OrderConfirm from "../views/OrderConfirm";
 import test from "../views/test.vue";
-
 Vue.use(VueRouter);
 
 const routes = [
@@ -49,6 +49,11 @@ const routes = [
     path: "/personalcenter",
     name: "PersonalCenter",
     component: PersonalCenter
+  },
+  {
+    path: "/orderConfirm",
+    name: "OrderConfirm",
+    component: OrderConfirm
   }
 ];
 

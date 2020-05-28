@@ -498,6 +498,8 @@ export default {
       }
       //  < -----------------------我的闲置---------------------->
       .my-unused {
+        height: 900px;
+        overflow: scroll;
         .unusedbody {
           .unuser-item {
             position: relative;
