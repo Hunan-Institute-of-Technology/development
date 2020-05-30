@@ -8,6 +8,8 @@ import Product from "../views/Product.vue";
 import PersonalCenter from "../views/PersonalCenter.vue";
 import Test from "../views/Test.vue";
 
+import OrderConfirm from "../views/OrderConfirm";
+import test from "../views/test.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -31,6 +33,11 @@ const routes = [
     ]
   },
   {
+    path: "/test",
+    name: "test",
+    component: test
+  },
+  {
     path: "/login",
     name: "login",
     component: Login
@@ -49,6 +56,11 @@ const routes = [
     path: "/personalcenter",
     name: "PersonalCenter",
     component: PersonalCenter
+  },
+  {
+    path: "/orderConfirm",
+    name: "OrderConfirm",
+    component: OrderConfirm
   }
 ];
 
