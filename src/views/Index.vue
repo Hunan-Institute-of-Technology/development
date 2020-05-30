@@ -104,35 +104,33 @@
         </div>
       </div>
       <div class="product">
+        <div class="pro-module">
+          <span @click="change_laster = 'true'">最新发布</span>
+          <span @click="change_favor = 'false'">猜你喜欢</span>
+        </div>
         <div class="product-menu">
-          <div class="product-item">
-            <span>最新发布</span>
-            <div class="children" v-if="child_num == 1" @click="change_laster">
-              <div v-for="(item, i) in productList" :key="i" class="pro-menu">
-                <div v-for="(pro, j) in item" :key="j" class="pro-item">
-                  <div class="pro-img">
-                    <img :src="pro ? pro.img : '/imgs/menu1.jpg'" />
-                  </div>
-                  <div class="pro-infor">
-                    <p>￥{{ pro ? pro.price : "80" }}</p>
-                    <p>{{ pro ? pro.name : "四肢松鼠" }}</p>
-                  </div>
+          <div class="children" v-show="child_num == 'true'">
+            <div v-for="(item, i) in productList" :key="i" class="pro-menu">
+              <div v-for="(pro, j) in item" :key="j" class="pro-item">
+                <div class="pro-img">
+                  <img :src="pro ? pro.img : '/imgs/menu1.jpg'" />
+                </div>
+                <div class="pro-infor">
+                  <p>￥{{ pro ? pro.price : "80" }}</p>
+                  <p>{{ pro ? pro.name : "四肢松鼠" }}</p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="product-item">
-            <span>猜你喜欢</span>
-            <div class="children" v-if="child_num == 2" @click="change_favor">
-              <div v-for="(item, i) in productList" :key="i" class="pro-menu">
-                <div v-for="(pro, j) in item" :key="j" class="pro-item">
-                  <div class="pro-img">
-                    <img :src="'pro.img'" />
-                  </div>
-                  <div class="pro-infor">
-                    <p>￥{{ pro.price }}</p>
-                    <p>{{ pro.img }}</p>
-                  </div>
+          <div class="children" v-show="child_num == 'false'">
+            <div v-for="(item, i) in productList_1" :key="i" class="pro-menu">
+              <div v-for="(pro, j) in item" :key="j" class="pro-item">
+                <div class="pro-img">
+                  <img :src="pro ? pro.img : '/imgs/product-1.jpg'" />
+                </div>
+                <div class="pro-infor">
+                  <p>￥{{ pro ? pro.price : "400" }}</p>
+                  <p>{{ pro ? pro.name : "二手手机" }}</p>
                 </div>
               </div>
             </div>
@@ -153,7 +151,7 @@ export default {
   },
   data() {
     return {
-      child_num: 1,
+      child_num: "false",
       swiperOption: {
         autoplay: true,
         loop: true,
@@ -220,16 +218,34 @@ export default {
         ],
         [0, 0, 0, 0],
         [0, 0, 0, 0]
+      ],
+      productList_1: [
+        [
+          {
+            img: "/imgs/product-1.jpg",
+            name: "手机",
+            price: "400"
+          },
+          {
+            img: "/imgs/menu2.jpg",
+            name: "三只松鼠",
+            price: "50"
+          },
+          {
+            img: "/imgs/menu3.jpg",
+            name: "童装",
+            price: "30"
+          },
+          {
+            img: "/imgs/menu3.jpg",
+            name: "童装",
+            price: "30"
+          }
+        ],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
       ]
     };
-  },
-  methods: {
-    change_laster() {
-      this.chid_num = 1;
-    },
-    change_favor() {
-      this.chid_num = 2;
-    }
   }
 };
 </script>
@@ -240,7 +256,8 @@ export default {
     .wrapper-box {
       display: flex;
       height: 450px;
-      border: 1px #de2006 solid;
+      border: 1px rgba(122, 119, 119, 0.2) solid;
+      // box-shadow: 2px 2px 10px ragb(255, 255, 0, 0.5);
       // <-----------------------主题栏---------------------->
       .nav-menu {
         display: inline-block;
@@ -367,50 +384,62 @@ export default {
       margin-top: 50px;
       margin-bottom: 40px;
       width: 1226px;
-      height: 950px;
-      border-bottom: #de2006 1px solid;
-      .product-menu {
-        display: flex;
-        .product-item {
+      height: 1050px;
+      // border-bottom: #de2006 1px solid;
+      .pro-module {
+        padding-top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        span {
+          display: inline-block;
           width: 80px;
           height: 30px;
-          margin-right: 16px;
-          font-size: 16px;
-          font-weight: bold;
-          color: #333333;
           cursor: pointer;
+          margin-left: 6px;
           &:hover {
-            border-bottom: #de2006 3px solid;
+            border-bottom: #62a5e9 3px solid;
+            color: #de2006;
           }
-          .children {
-            position: absolute;
-            left: 0px;
-            top: 10px;
-            margin-top: 25px;
-            width: 1226px;
-            border: #333333 1px solid;
-            .pro-menu {
-              display: flex;
-              margin-top: 5px;
-              justify-content: space-between;
-              .pro-item {
-                width: 280px;
-                height: 280px;
-                border: #de2006 1px solid;
-                margin-left: 10px;
-                text-align: center;
-                &:last-children {
-                  margin-left: 0px;
-                }
-                .pro-img {
-                  margin-top: 5px;
-                  margin-left: 11px;
-                  width: 225px;
-                  height: 225px;
-                  img {
-                    width: 100%;
-                    height: 100%;
-                  }
+        }
+      }
+      .product-menu {
+        position: absolute;
+        left: 0px;
+        top: 38px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #333333;
+        .children {
+          margin-top: 25px;
+          width: 1226px;
+          height: 900px;
+          // border: #333333 1px solid;
+          .pro-menu {
+            display: flex;
+            margin-top: 20px;
+            .pro-item {
+              width: 273px;
+              height: 280px;
+              // border: #de2006 1px solid;
+              margin-left: 20px;
+              text-align: center;
+              background-color: #fff;
+              cursor: pointer;
+              &:last-children {
+                margin-left: 0px;
+              }
+              &:hover {
+                transform: scale(1.1);
+              }
+              .pro-img {
+                margin-top: 5px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 250px;
+                height: 225px;
+                img {
+                  width: 100%;
+                  height: 100%;
                 }
               }
             }
