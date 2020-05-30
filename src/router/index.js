@@ -9,7 +9,6 @@ import PersonalCenter from "../views/PersonalCenter.vue";
 import Test from "../views/Test.vue";
 
 import OrderConfirm from "../views/OrderConfirm";
-import test from "../views/test.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -31,11 +30,6 @@ const routes = [
         component: Product
       }
     ]
-  },
-  {
-    path: "/test",
-    name: "test",
-    component: test
   },
   {
     path: "/login",
