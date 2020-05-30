@@ -26,6 +26,7 @@ export default {
       width: 70px;
       height: 70px;
       margin-left: 20px;
+      border-radius: 35px;
       img {
         height: 100%;
         width: 100%;
