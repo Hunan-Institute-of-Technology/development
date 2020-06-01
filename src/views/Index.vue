@@ -149,6 +149,16 @@ export default {
     Swiper,
     SwiperSlide
   },
+  mounted() {
+    this.photo();
+  },
+  methods: {
+    photo() {
+      this.axios.get("/carousel/getCarouselList").then((res)=>{
+        console.log(res);
+      })
+    }
+  },
   data() {
     return {
       child_num: "false",

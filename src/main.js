@@ -14,6 +14,8 @@ import store from "./store";
 Vue.use(ElementUI);
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
+axios.defaults.baseURL = "/api";
+axios.defaults.timeout = 8000;
 
 axios.interceptors.response.use(function(response) {
   let res = response.data;
