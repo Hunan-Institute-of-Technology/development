@@ -105,8 +105,8 @@
       </div>
       <div class="product">
         <div class="pro-module">
-          <span @click="change_laster = 'true'">最新发布</span>
-          <span @click="change_favor = 'false'">猜你喜欢</span>
+          <span @click="child_num = 'true'">最新发布</span>
+          <span @click="child_num = 'false'">猜你喜欢</span>
         </div>
         <div class="product-menu">
           <div class="children" v-show="child_num == 'true'">
@@ -148,6 +148,16 @@ export default {
   components: {
     Swiper,
     SwiperSlide
+  },
+  mounted() {
+    this.photo();
+  },
+  methods: {
+    photo() {
+      this.axios.get("/carousel/getCarouselList").then((res)=>{
+        console.log(res);
+      })
+    }
   },
   data() {
     return {
@@ -421,6 +431,7 @@ export default {
               width: 273px;
               height: 280px;
               // border: #de2006 1px solid;
+              box-shadow: 0px 0px 10px ragb(255, 0, 0, 0.5);
               margin-left: 20px;
               text-align: center;
               background-color: #fff;

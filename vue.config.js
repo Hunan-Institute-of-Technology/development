@@ -1,22 +1,19 @@
-module.exports = {
-     devServer:{
-       host: 'localhost' ,
-       port:8081,
-       proxy:{
-         '/fleamarket':{
-           target:"https://www.hnitfleamarket.com",
-           changeOrigin:true,
-           pathRewrite:{
-             'fleamarket': ''
-           }
-         }
-       }
-     },
-     //本地调试可以开启，线上部署需要关闭
-   //   productionSourceMap:true,
-     //删除预加载
-   //   chainWebpack:(config)=>{
-   //     config.plugins.delete('prefetch')
-   //   }
-   }
-   
+
+module.exports={
+devServer:{
+    host:'localhost',
+    port:8081,
+    proxy:{
+// 一定不能加空格
+    '/api': {
+        target:'http://localhost:8080/fleamarket',
+        changeOrigin:true,
+    //   错误示范pathRewriter
+        pathRewrite:{
+          '/api':''
+        }
+    }
+    }
+}
+};
+
