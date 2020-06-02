@@ -5,21 +5,35 @@
 <script>
 export default {
   name: "test",
+  data() {
+    return {
+      data: "",
+      phoneNum:"17674741353"
+    };
+  },
   mounted() {
-    this.init();
+    // this.init();
     this.init1();
+    this.init2();
   },
   methods: {
     init() {
       this.axios
-        .post("/users/register", {
-          phoneNum: '17674741353'
-        })
+        .post("/sms/send/?phoneNum=" + "17674741353"
+         )
         .then(() => {});
     },
     init1() {
+      this.axios.get(`/goods/info/${550}`).then(res => {
+        this.data = res;
+      });
+    },
+    init2() {
       this.axios
-        .get("/carousel/getCarouselList")
+        .post("/sms/check", {
+          code:"316281",
+          telephone	: "17674741353"
+        })
         .then(() => {});
     }
   }
