@@ -7,36 +7,79 @@
         </div>
         <h2>注册账号</h2>
         <div class="sginupform">
-          <div class="country">
-            <span>国家/地区</span>
-            <div class="slectcountry">
-              <el-select class="el-select" v-model="value" placeholder="请选择">
-                <el-option v-for="(item,index) in options" :key="index" :value="item"></el-option>
-              </el-select>
-            </div>
-            <p>成功注册账号后，国家/地区将不能被修改</p>
-          </div>
-          <div class="from">
-            <span>邮箱地址</span>
-            <div class="input">
-              <input type="email" placeholder="请输入邮箱地址" v-model="email" />
-            </div>
-          </div>
           <div class="from">
             <span>账户用户名</span>
             <div class="input">
-              <input type="text" placeholder="请输入账户用户名" v-model="username" />
+              <el-input placeholder="请输入账户用户名" class="inputtext" v-model="username" clearable></el-input>
             </div>
           </div>
           <div class="from">
             <span>密码</span>
             <div class="input">
-              <el-input placeholder="请输入密码" v-model="password" class="password" show-password></el-input>
+              <el-input placeholder="请输入8位以上的密码" v-model="password" class="inputtext" show-password></el-input>
+            </div>
+          </div>
+          <div class="from">
+            <span>手机号码</span>
+            <div class="input usertelephone">
+              <el-input
+                placeholder="请输入您的手机号码"
+                v-model="telephone	"
+                class="inputtext"
+                show-word-limit
+                maxlength="11"
+              ></el-input>
+              <div class="cbutton">
+                <el-button
+                  type="info"
+                  @click="sends"
+                  v-if="!sendMsgDisabled"
+                  icon="el-icon-message"
+                  circle
+                ></el-button>
+                <el-button
+                  type="info"
+                  v-if="sendMsgDisabled"
+                  style="background:#dfe6e9"
+                  icon="el-icon-loading"
+                  circle
+                ></el-button>
+                <span v-if="sendMsgDisabled">{{time+'秒重新后获取'}}</span>
+                <span v-if="!sendMsgDisabled" @click="sends">点击获取验证码</span>
+              </div>
+            </div>
+          </div>
+          <div class="from">
+            <span>验证码</span>
+            <div class="input usertelephone">
+              <el-input
+                placeholder="请输入验证码"
+                v-model="checkcode"
+                show-word-limit
+                maxlength="6"
+                class="inputtext"
+              ></el-input>
+              <div class="cbutton" @click="checkTelCode">
+                <el-button
+                  type="info"
+                  v-show="iconChoice == 'check' "
+                  icon="el-icon-s-check"
+                  circle
+                ></el-button>
+                <el-button
+                  type="info"
+                  v-show="iconChoice == 'checkyes'"
+                  icon="el-icon-check"
+                  circle
+                ></el-button>
+                <el-button type="info" v-show="iconChoice == 'checkno'" icon="el-icon-close" circle></el-button>
+                {{telephoneCodeTip}}
+              </div>
             </div>
           </div>
           <div class="info">
             <span class="checkbox" :class="{'checked':checked}" @click="changcheck"></span>
-            已同意本公司
+            已同意
             <span>用户协议</span> 和
             <span>隐私政策</span>
           </div>
@@ -54,277 +97,100 @@ export default {
       value: "",
       username: "",
       password: "",
-      email: "",
+      telephone: "",
+      iconChoice: "check",
+      checkcode: "", //验证码
+      telephoneCodeTip: "点击检验验证码",
       checked: false,
-      options: [
-        "Afghanistan",
-        "Albania",
-        "Algeria",
-        "American Samoa",
-        "Andorra",
-        "Angola",
-        "Anguilla",
-        "Antarctica",
-        "Antigua and Barbuda",
-        "Argentina",
-        "Armenia",
-        "Aruba",
-        "Australia",
-        "Austria",
-        "Azerbaijan",
-        "Bahrain",
-        "Bangladesh",
-        "Barbados",
-        "Belarus",
-        "Belgium",
-        "Belize",
-        "Benin",
-        "Bermuda",
-        "Bhutan",
-        "Bolivia",
-        "Bosnia and Herzegovina",
-        "Botswana",
-        "Bouvet Island",
-        "Brazil",
-        "British Indian Ocean Territory",
-        "British Virgin Islands",
-        "Brunei",
-        "Bulgaria",
-        "Burkina Faso",
-        "Burundi",
-        "Cote d'Ivoire",
-        "Cambodia",
-        "Cameroon",
-        "Canada",
-        "Cape Verde",
-        "Cayman Islands",
-        "Central African Republic",
-        "Chad",
-        "Chile",
-        "China",
-        "Christmas Island",
-        "Cocos (Keeling) Islands",
-        "Colombia",
-        "Comoros",
-        "Congo",
-        "Cook Islands",
-        "Costa Rica",
-        "Croatia",
-        "Cuba",
-        "Cyprus",
-        "Czech Republic",
-        "Democratic Republic of the Congo",
-        "Denmark",
-        "Djibouti",
-        "Dominica",
-        "Dominican Republic",
-        "East Timor",
-        "Ecuador",
-        "Egypt",
-        "El Salvador",
-        "Equatorial Guinea",
-        "Eritrea",
-        "Estonia",
-        "Ethiopia",
-        "Faeroe Islands",
-        "Falkland Islands",
-        "Fiji",
-        "Finland",
-        "Former Yugoslav Republic of Macedonia",
-        "France",
-        "French Guiana",
-        "French Polynesia",
-        "French Southern Territories",
-        "Gabon",
-        "Georgia",
-        "Germany",
-        "Ghana",
-        "Gibraltar",
-        "Greece",
-        "Greenland",
-        "Grenada",
-        "Guadeloupe",
-        "Guam",
-        "Guatemala",
-        "Guinea",
-        "Guinea-Bissau",
-        "Guyana",
-        "Haiti",
-        "Heard Island and McDonald Islands",
-        "Honduras",
-        "Hong Kong",
-        "Hungary",
-        "Iceland",
-        "India",
-        "Indonesia",
-        "Iran",
-        "Iraq",
-        "Ireland",
-        "Israel",
-        "Italy",
-        "Jamaica",
-        "Japan",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kiribati",
-        "Kuwait",
-        "Kyrgyzstan",
-        "Laos",
-        "Latvia",
-        "Lebanon",
-        "Lesotho",
-        "Liberia",
-        "Libya",
-        "Liechtenstein",
-        "Lithuania",
-        "Luxembourg",
-        "Macau",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Mali",
-        "Malta",
-        "Marshall Islands",
-        "Martinique",
-        "Mauritania",
-        "Mauritius",
-        "Mayotte",
-        "Mexico",
-        "Micronesia",
-        "Moldova",
-        "Monaco",
-        "Mongolia",
-        "Montserrat",
-        "Morocco",
-        "Mozambique",
-        "Myanmar",
-        "Namibia",
-        "Nauru",
-        "Nepal",
-        "Netherlands",
-        "Netherlands Antilles",
-        "New Caledonia",
-        "New Zealand",
-        "Nicaragua",
-        "Niger",
-        "Nigeria",
-        "Niue",
-        "Norfolk Island",
-        "North Korea",
-        "Northern Marianas",
-        "Norway",
-        "Oman",
-        "Pakistan",
-        "Palau",
-        "Panama",
-        "Papua New Guinea",
-        "Paraguay",
-        "Peru",
-        "Philippines",
-        "Pitcairn Islands",
-        "Poland",
-        "Portugal",
-        "Puerto Rico",
-        "Qatar",
-        "Reunion",
-        "Romania",
-        "Russia",
-        "Rwanda",
-        "Sqo Tome and Principe",
-        "Saint Helena",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Saint Pierre and Miquelon",
-        "Saint Vincent and the Grenadines",
-        "Samoa",
-        "San Marino",
-        "Saudi Arabia",
-        "Senegal",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Slovakia",
-        "Slovenia",
-        "Solomon Islands",
-        "Somalia",
-        "South Africa",
-        "South Georgia and the South Sandwich Islands",
-        "South Korea",
-        "Spain",
-        "Sri Lanka",
-        "Sudan",
-        "Suriname",
-        "Svalbard and Jan Mayen",
-        "Swaziland",
-        "Sweden",
-        "Switzerland",
-        "Syria",
-        "Taiwan",
-        "Tajikistan",
-        "Tanzania",
-        "Thailand",
-        "The Bahamas",
-        "The Gambia",
-        "Togo",
-        "Tokelau",
-        "Tonga",
-        "Trinidad and Tobago",
-        "Tunisia",
-        "Turkey",
-        "Turkmenistan",
-        "Turks and Caicos Islands",
-        "Tuvalu",
-        "Virgin Islands",
-        "Uganda",
-        "Ukraine",
-        "United Arab Emirates",
-        "United Kingdom",
-        "United States",
-        "United States Minor Outlying Islands",
-        "Uruguay",
-        "Uzbekistan",
-        "Vanuatu",
-        "Vatican City",
-        "Venezuela",
-        "Vietnam",
-        "Wallis and Futuna",
-        "Western Sahara",
-        "Yemen",
-        "Yugoslavia",
-        "Zambia",
-        "Zimbabwe"
-      ]
+      time: 60, // 发送验证码倒计时
+      sendMsgDisabled: false, //验证码区是否禁用
+      codeCheckResult: "" //验证码检验
     };
   },
-  components:{
-
-  },
+  components: {},
   methods: {
     register() {
-      if(this.email ==''){
-         this.$message.warning('请填写邮箱')
-      }else if(this.username ==''){
-         this.$message.warning('请填写用户名')
-      }else if(this.password ==''){
-         this.$message.warning('请填写密码')
-      }else if (this.checked == false) {
-        this.$message.warning("请同意小米用户协议和隐私政策");
+      if (this.username == "") {
+        this.$message.warning("请填写用户名");
+        return;
+      } else if (this.password == "") {
+        this.$message.warning("请填写密码");
+        return;
+      } else if (!/\d{8}/.test(this.password)) {
+        this.$message.warning("请填写8位数以上的密码");
+        return;
+      } else if (!this.telephone || !/\d{11}/.test(this.telephone)) {
+        this.$message.error("请输入正确格式的手机号码");
+        return;
+      } else if (!this.checkcode || !/\d{6}/.test(this.checkcode)) {
+        this.$message.error("请输入正确格式的验证码");
+        return;
+      } else if (!(this.codeCheckResult == "OK")) {
+        this.$message.error("验证码未通过，请重试");
+        return;
+      } else if (this.checked == false) {
+        this.$message.warning("请同意用户协议和隐私政策");
+        return;
       } else {
         this.axios
-          .post("/user/register", {
-            username: this.username,
-            password: this.password,
-            email: this.password
+          .post("/users/register", {
+            code: this.checkcode,
+            userName: this.username,
+            userPassword: this.password,
+            userTelephone: this.telephone
           })
           .then(() => {
+            this.$message.success("注册成功，正在为您跳转到登录页面");
             this.$router.push("/login");
           });
       }
     },
     changcheck() {
       this.checked = !this.checked;
+    },
+    sends() {
+      if (!this.telephone || !/\d{11}/.test(this.telephone)) {
+        this.$message.error("请输入正确格式的手机号码");
+        return;
+      }
+      let _this = this;
+      this.axios.post("/sms/send/?phoneNum=" + _this.telephone).then(() => {
+        this.$message.success("短信已发送,请查收");
+      });
+      _this.sendMsgDisabled = true;
+      let interval = setInterval(function() {
+        if (_this.time-- <= 0) {
+          _this.time = 60;
+          _this.sendMsgDisabled = false;
+          clearInterval(interval);
+        }
+      }, 1000);
+    },
+    checkTelCode() {
+      if (!this.telephone || !/\d{11}/.test(this.telephone)) {
+        this.$message.error("请输入正确格式的手机号码");
+        return;
+      } else if (!this.checkcode || !/\d{6}/.test(this.checkcode)) {
+        this.$message.error("请输入正确格式的验证码");
+        return;
+      }
+      this.axios
+        .post("/sms/check", {
+          code: this.checkcode,
+          telephone: this.telephone
+        })
+        .then(res => {
+          this.codeCheckResult = res.data.msg;
+          if (this.codeCheckResult == "OK") {
+            this.iconChoice = "checkyes";
+            this.telephoneCodeTip = "手机号码验证通过";
+            this.$message.success("手机号码验证通过");
+          } else {
+            this.iconChoice = "checkno";
+            this.telephoneCodeTip = "手机号码验失败";
+            this.$message.error("手机号码验证失败");
+          }
+        });
     }
   }
 };
@@ -381,13 +247,34 @@ export default {
         }
         .from {
           display: block;
-          .password {
+          .inputtext {
             height: 42px;
             line-height: 42px;
           }
+          // .password {
+          //   height: 42px;
+          //   line-height: 42px;
+          // }
           span {
             font-size: 14px;
             font-weight: bold;
+          }
+          .usertelephone {
+            position: relative;
+            .cbutton {
+              width: 400px;
+              position: absolute;
+              top: 2px;
+              left: 355px;
+              cursor: pointer;
+              .el-button--info {
+                background: #74b9ff;
+                border: #74b9ff;
+              }
+              .el-button + .el-button {
+                margin: 0;
+              }
+            }
           }
         }
         .info {
@@ -401,7 +288,7 @@ export default {
             margin-right: 17px;
             cursor: pointer;
             &.checked {
-              background: url("/imgs/icon-gou.png") #409EFF no-repeat center;
+              background: url("/imgs/icon-gou.png") #409eff no-repeat center;
               background-size: 16px 12px;
               border: none;
             }
