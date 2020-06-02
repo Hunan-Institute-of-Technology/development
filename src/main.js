@@ -19,8 +19,8 @@ axios.defaults.timeout = 8000;
 
 
 //基础地址
-axios.defaults.baseURL = '/fleamarket'
-axios.defaults.timeout = 8000
+axios.defaults.baseURL = "/api/fleamarket";
+axios.defaults.timeout = 8000;
 
 axios.interceptors.response.use(function (response) {
   let res = response.data;
