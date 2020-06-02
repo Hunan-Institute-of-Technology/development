@@ -5,7 +5,16 @@
       <span>n</span>
       <span>i</span>
       <span>t</span>
-      <span>...</span>
+      <span>F</span>
+      <span>l</span>
+      <span>e</span>
+      <span>a</span>
+      <span>M</span>
+      <span>a</span>
+      <span>r</span>
+      <span>k</span>
+      <span>e</span>
+      <span>t</span>
     </h2>
     <div class="box">
       <h1>用户登录</h1>
@@ -32,7 +41,7 @@ export default {
           username,
           password
         })
-        .then(res => {
+        .then((res)=> {
           this.$cookie.set("userId", res.id, { expires: "Session" });
           this.$message.success("登录成功");
         });
@@ -52,7 +61,7 @@ export default {
   h2 {
     position: absolute;
     height: 250px;
-    top: 80px;
+    top: 100px;
     width: 300px;
     margin-left: 30px;
     font-size: 45px;

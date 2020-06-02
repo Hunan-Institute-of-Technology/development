@@ -5,7 +5,7 @@ devServer:{
     proxy:{
 // 一定不能加空格
     '/api': {
-        target:'http://localhost:8080/fleamarket',
+        target:'http://localhost:8080',
         changeOrigin:true,
     //   错误示范pathRewriter
         pathRewrite:{

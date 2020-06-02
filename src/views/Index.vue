@@ -151,12 +151,16 @@ export default {
   },
   mounted() {
     this.photo();
+    this.menu();
   },
   methods: {
     photo() {
       this.axios.get("/carousel/getCarouselList").then((res)=>{
-        console.log(res);
+        alert(res);
       })
+    },
+    menu() {
+      this.axios.get("/category/getARootCat")
     }
   },
   data() {
