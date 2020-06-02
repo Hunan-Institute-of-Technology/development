@@ -10,19 +10,71 @@
           <div class="from">
             <span>账户用户名</span>
             <div class="input">
-              <el-input placeholder="请输入账户用户名"  class="inputtext" v-model="username" clearable></el-input>
+              <el-input placeholder="请输入账户用户名" class="inputtext" v-model="username" clearable></el-input>
             </div>
           </div>
           <div class="from">
             <span>密码</span>
             <div class="input">
-              <el-input placeholder="请输入密码" v-model="password" class="inputtext" show-password></el-input>
+              <el-input placeholder="请输入8位以上的密码" v-model="password" class="inputtext" show-password></el-input>
             </div>
           </div>
-            <div class="from">
-              <span>手机号码</span>
-            <div class="input">
-              <el-input placeholder="请输入您的手机号码" v-model="telephone	"  class="inputtext"   show-word-limit maxlength="11"></el-input>
+          <div class="from">
+            <span>手机号码</span>
+            <div class="input usertelephone">
+              <el-input
+                placeholder="请输入您的手机号码"
+                v-model="telephone	"
+                class="inputtext"
+                show-word-limit
+                maxlength="11"
+              ></el-input>
+              <div class="cbutton">
+                <el-button
+                  type="info"
+                  @click="sends"
+                  v-if="!sendMsgDisabled"
+                  icon="el-icon-message"
+                  circle
+                ></el-button>
+                <el-button
+                  type="info"
+                  v-if="sendMsgDisabled"
+                  style="background:#dfe6e9"
+                  icon="el-icon-loading"
+                  circle
+                ></el-button>
+                <span v-if="sendMsgDisabled">{{time+'秒重新后获取'}}</span>
+                <span v-if="!sendMsgDisabled" @click="sends">点击获取验证码</span>
+              </div>
+            </div>
+          </div>
+          <div class="from">
+            <span>验证码</span>
+            <div class="input usertelephone">
+              <el-input
+                placeholder="请输入验证码"
+                v-model="checkcode"
+                show-word-limit
+                maxlength="6"
+                class="inputtext"
+              ></el-input>
+              <div class="cbutton" @click="checkTelCode">
+                <el-button
+                  type="info"
+                  v-show="iconChoice == 'check' "
+                  icon="el-icon-s-check"
+                  circle
+                ></el-button>
+                <el-button
+                  type="info"
+                  v-show="iconChoice == 'checkyes'"
+                  icon="el-icon-check"
+                  circle
+                ></el-button>
+                <el-button type="info" v-show="iconChoice == 'checkno'" icon="el-icon-close" circle></el-button>
+                {{telephoneCodeTip}}
+              </div>
             </div>
           </div>
           <div class="info">
@@ -46,34 +98,99 @@ export default {
       username: "",
       password: "",
       telephone: "",
-      checked: false
+      iconChoice: "check",
+      checkcode: "", //验证码
+      telephoneCodeTip: "点击检验验证码",
+      checked: false,
+      time: 60, // 发送验证码倒计时
+      sendMsgDisabled: false, //验证码区是否禁用
+      codeCheckResult: "" //验证码检验
     };
   },
   components: {},
   methods: {
     register() {
-      if (this.email == "") {
-        this.$message.warning("请填写邮箱");
-      } else if (this.username == "") {
+      if (this.username == "") {
         this.$message.warning("请填写用户名");
+        return;
       } else if (this.password == "") {
         this.$message.warning("请填写密码");
+        return;
+      } else if (!/\d{8}/.test(this.password)) {
+        this.$message.warning("请填写8位数以上的密码");
+        return;
+      } else if (!this.telephone || !/\d{11}/.test(this.telephone)) {
+        this.$message.error("请输入正确格式的手机号码");
+        return;
+      } else if (!this.checkcode || !/\d{6}/.test(this.checkcode)) {
+        this.$message.error("请输入正确格式的验证码");
+        return;
+      } else if (!(this.codeCheckResult == "OK")) {
+        this.$message.error("验证码未通过，请重试");
+        return;
       } else if (this.checked == false) {
-        this.$message.warning("请同意小米用户协议和隐私政策");
+        this.$message.warning("请同意用户协议和隐私政策");
+        return;
       } else {
         this.axios
-          .post("/user/register", {
-            username: this.username,
-            password: this.password,
-            email: this.password
+          .post("/users/register", {
+            code: this.checkcode,
+            userName: this.username,
+            userPassword: this.password,
+            userTelephone: this.telephone
           })
           .then(() => {
+            this.$message.success("注册成功，正在为您跳转到登录页面");
             this.$router.push("/login");
           });
       }
     },
     changcheck() {
       this.checked = !this.checked;
+    },
+    sends() {
+      if (!this.telephone || !/\d{11}/.test(this.telephone)) {
+        this.$message.error("请输入正确格式的手机号码");
+        return;
+      }
+      let _this = this;
+      this.axios.post("/sms/send/?phoneNum=" + _this.telephone).then(() => {
+        this.$message.success("短信已发送,请查收");
+      });
+      _this.sendMsgDisabled = true;
+      let interval = setInterval(function() {
+        if (_this.time-- <= 0) {
+          _this.time = 60;
+          _this.sendMsgDisabled = false;
+          clearInterval(interval);
+        }
+      }, 1000);
+    },
+    checkTelCode() {
+      if (!this.telephone || !/\d{11}/.test(this.telephone)) {
+        this.$message.error("请输入正确格式的手机号码");
+        return;
+      } else if (!this.checkcode || !/\d{6}/.test(this.checkcode)) {
+        this.$message.error("请输入正确格式的验证码");
+        return;
+      }
+      this.axios
+        .post("/sms/check", {
+          code: this.checkcode,
+          telephone: this.telephone
+        })
+        .then(res => {
+          this.codeCheckResult = res.data.msg;
+          if (this.codeCheckResult == "OK") {
+            this.iconChoice = "checkyes";
+            this.telephoneCodeTip = "手机号码验证通过";
+            this.$message.success("手机号码验证通过");
+          } else {
+            this.iconChoice = "checkno";
+            this.telephoneCodeTip = "手机号码验失败";
+            this.$message.error("手机号码验证失败");
+          }
+        });
     }
   }
 };
@@ -141,6 +258,23 @@ export default {
           span {
             font-size: 14px;
             font-weight: bold;
+          }
+          .usertelephone {
+            position: relative;
+            .cbutton {
+              width: 400px;
+              position: absolute;
+              top: 2px;
+              left: 355px;
+              cursor: pointer;
+              .el-button--info {
+                background: #74b9ff;
+                border: #74b9ff;
+              }
+              .el-button + .el-button {
+                margin: 0;
+              }
+            }
           }
         }
         .info {
