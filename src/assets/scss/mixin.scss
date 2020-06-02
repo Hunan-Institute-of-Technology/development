@@ -5,3 +5,44 @@
     width:$w;
     height:$h;
 }
+//mixin提高复用性
+@mixin flex ($hov:space-between,$col:center){
+    display: flex;
+    justify-content: $hov;
+    align-items: $col;
+ }
+ @mixin BgImg ($w:0,$h:0,$imgurl:'',$bgsize:contain) {
+    display: inline-block;
+    width: $w;
+    height: $h;
+    background: url($imgurl) no-repeat center;
+    background-size: $bgsize;
+ }
+ @mixin position($pos:absolute,$top:0,$lef:0,$w:100%,$h:100%) {
+    position: $pos;
+    top: $top;
+    left: $lef;
+    width: $w;
+    height: $h;
+ }
+ 
+ @mixin posImg ($pos:absolute,$top:0,$right:0,$w:0,$h:0,$imgurl:'',$bgsize:contain) {
+    position: $pos;
+    top: $top;
+    right:$right;
+    width: $w;
+    height: $h;
+    background: url($imgurl) no-repeat center;
+    background-size: $bgsize;
+ }
+ @mixin height($h:0,$lh:$h) {
+    height: $h;
+    line-height: $lh;
+  }
+ @mixin wH($w:0,$h:0) {
+    width: $w;
+    height: $h;
+ }
+ @mixin border($bw:1px,$bc:$colorF,$bs:solid) {
+    border: $bw $bs $bc; 
+  }
