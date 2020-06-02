@@ -1,5 +1,9 @@
 <template>
   <div class="loginbody">
+    <div class="bkgsye">
+      <span></span>
+      <span class="radius"></span>
+    </div>
     <h2>
       <span>H</span>
       <span>n</span>
@@ -58,6 +62,54 @@ export default {
   text-align: center;
   background: #000;
   color: #d1d8e0;
+  perspective: 340px;
+  .bkgsye {
+    position: absolute;
+    width: 100%;
+    height: 750px;
+    left: 0;
+    span {
+      position: absolute;
+      display: inline-block;
+      top: -30px;
+      height: 10px;
+      width: 10px;
+      border-radius: 5px;
+      background: linear-gradient(0deg, #e6c876, #fff);
+      animation: light 7s ease infinite;
+      }
+      @keyframes light {
+      0% {
+        box-shadow: 0px, 0px, 40px, #fbc531;
+        top: -10px;
+        left:60px;
+      }
+      40% {
+        color: #000;
+        box-shadow: none;
+        top: 300px;
+        left: 100px;
+      }
+      50%{
+        left: 200px;
+        top:500px;
+      }
+      65% {
+        top: 350px;
+        left: 900px;
+      }
+      80% {
+        top: 500px;
+        right: 200px;
+      }
+      100% {
+        top:0px;
+        right:0px;
+        box-shadow: 0px, 0px, 100px, #fbc531;
+      }
+    }
+  }
+
   h2 {
     position: absolute;
     height: 250px;
