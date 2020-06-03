@@ -15,7 +15,7 @@
         <div class="header-logo">
           <!-- 点击图标返回首页 -->
           <a href="/#/index">
-            <img src="/imgs/hu.jpg" alt="" />
+            <img src="/imgs/hu1.png" alt="" />
           </a>
         </div>
         <div class="header-search">
@@ -29,14 +29,23 @@
               <input class="sub-input" type="submit" value="" />
             </span>
           </form>
-        </div>
       </div>
     </div>
   </div>
+</div>  
 </template>
+<script>
+export default {
+  data() {
+    return {
+    }
+  }
+}
+</script>
 <style lang="scss">
 @import "./../assets/scss/mixin.scss";
 .header {
+  // background-color:#3B3B98;
   .nav-topbar {
     height: 39px;
     color: #b0b0b0;
@@ -61,9 +70,9 @@
     }
   }
   .nav-header {
-    height: 135px;
+    height: 100px;
     // line-height: 135px;
-    border-bottom: #dcd4d4ad 1px solid;
+    border-bottom: #e5e5e5 2px solid;
     margin-bottom: 11px;
     .container {
       display: flex;
@@ -71,22 +80,23 @@
       .header-logo {
         margin-left: 15px;
         margin-right: 70px;
-        padding-top: 15px;
+        padding-top: 10px;
         a {
           display: inline-block;
-          width: 80px;
-          height: 80px;
+          width: 70px;
+          height: 70px;
           img {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
           }
         }
       }
       .header-search {
         .search_box {
           display: flex;
-          margin-top: 36px;
-          background-color: #6d8ae4;
+          margin-left: 130px;
+          margin-top: 24px;
+          background-image: linear-gradient(#6d8ae4,rgba(199, 187, 96, 0.4));
           .sear-input {
             height: 50px;
             width: 560px;

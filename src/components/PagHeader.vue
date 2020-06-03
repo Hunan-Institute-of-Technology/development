@@ -3,7 +3,7 @@
     <div class="container">
       <div class="home-header">
         <a href="/#/index">
-          <img src="/imgs/hu.jpg" />
+          <img src="/imgs/hu1.png" />
         </a>
       </div>
     </div>
@@ -17,6 +17,7 @@ export default {
 <style lang="scss">
 .pag {
   border-bottom: #757373 1px solid;
+  // /
   .home-header {
     display: flex;
     height: 100px;

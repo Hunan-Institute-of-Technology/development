@@ -6,7 +6,7 @@ import Index from "../views/Index.vue";
 import SginUp from "../views/SginUp.vue";
 import Product from "../views/Product.vue";
 import PersonalCenter from "../views/PersonalCenter.vue";
-import Test from "../views/test.vue";
+import Test from "../views/Test.vue";
 
 import OrderConfirm from "../views/OrderConfirm";
 Vue.use(VueRouter);
