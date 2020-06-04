@@ -1,5 +1,6 @@
 <template>
   <div class="signup">
+    <pag-header></pag-header>
     <div class="wrapper">
       <div class="container">
         <div class="nav-header-logo">
@@ -346,6 +347,7 @@
   </div>
 </template>
 <script>
+import PagHeader from "./../components/PagHeader.vue";
 import Modal from "./../components/Modal";
 export default {
   name: "signup",
@@ -369,7 +371,11 @@ export default {
       showUsercontract: false //用户协议弹框
     };
   },
-  components: { Modal },
+
+  components: {
+    PagHeader，
+     Modal
+  },
   methods: {
     register() {
       if (this.username == "") {
@@ -442,7 +448,8 @@ export default {
           telephone: this.telephone
         })
         .then(res => {
-          this.codeCheckResult = res.data.msg;
+          // this.codeCheckResult = res.data.msg;
+          this.codeCheckResult = res.msg;
           if (this.codeCheckResult == "OK") {
             this.iconChoice = "checkyes";
             this.telephoneCodeTip = "手机号码验证通过";
@@ -476,18 +483,21 @@ export default {
   .wrapper {
     .container {
       text-align: center;
+      //  border: #74b9ff, 6px, solid;
       h2 {
-        margin-top: 46px;
+        margin-top: 27px;
         font-size: 30px;
         font-weight: 400;
       }
       .sginupform {
         text-align: left;
-        margin-top: 42px;
+        margin-top: 28px;
+        margin-bottom: 20px;
         box-sizing: border-box;
         position: absolute;
         left: 50%;
         transform: translate(-50%);
+        border: #74b9ff, 6px, solid;
         .country {
           font-size: 14px;
           margin-bottom: 20px;
@@ -499,7 +509,7 @@ export default {
             margin: 10px 0;
             .el-select {
               width: 332px;
-              height: 42px;
+              height: 28px;
               font-size: 14px;
             }
           }
@@ -510,8 +520,8 @@ export default {
         .from {
           display: block;
           .inputtext {
-            height: 42px;
-            line-height: 42px;
+            height: 38px;
+            line-height: 38px;
           }
           // .password {
           //   height: 42px;
