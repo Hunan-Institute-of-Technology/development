@@ -1,4 +1,4 @@
-<template>
+s<template>
   <div class="personal">
     <pag-header></pag-header>
     <div class="container">
@@ -48,7 +48,6 @@
                     <li v-for="(i, index) in count" class="infinite-list-item" :key="index">
                       <p>{{ i }}</p>
                       <div class="item-replay">
-                        <span>标记已读</span>
                         <a href="javascript:;">回复</a>
                       </div>
                     </li>
@@ -129,12 +128,6 @@
               </tr>
               <tr>
                 <th>手机号:</th>
-                <th>
-                  <input type="text" />
-                </th>
-              </tr>
-              <tr>
-                <th>大学:</th>
                 <th>
                   <input type="text" />
                 </th>
@@ -316,6 +309,9 @@ export default {
     };
   },
   methods: {
+    changeStyle() {
+      this.changeSelectStyle = 2;
+    },
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
@@ -342,7 +338,9 @@ export default {
       padding-top: 15px;
       width: 200px;
       height: 600px;
-      background: blanchedalmond;
+      // background: blanchedalmond;
+      // background-color: #706fd3;image
+      background-image:linear-gradient(rgba(198, 81, 241, 0.3), rgba(198, 81, 241, 0.6));
       .wrapper {
         text-align: center;
         .per-log {
@@ -414,7 +412,9 @@ export default {
       }
       padding-top: 15px;
       width: 1026px;
-      background: yellowgreen;
+      // background: yellowgreen;
+      background-image:linear-gradient(to left,  rgba(80, 50, 162, 0.4),  rgba(80, 50, 162, 0.8));
+;
       //  < -----------------------我的消息---------------------->
       .my-infor {
         .infor-box {
@@ -444,6 +444,7 @@ export default {
               }
               .infinite-list {
                 .infinite-list-item {
+                  position: relative;
                   width: 440px;
                   height: 70px;
                   border: #898181 1px solid;
@@ -454,13 +455,11 @@ export default {
                     height: 40px;
                   }
                   .item-replay {
-                    // width: 200px;
+                    position: absolute;
                     height: 30px;
                     line-height: 30px;
                     font-size: 13px;
-                    span {
-                      color: #cc8975;
-                      margin-right: 4px;
+                    right: 19px;
                     }
                     a {
                       color: #60c17f;
@@ -472,7 +471,6 @@ export default {
             }
           }
         }
-      }
       //  < -----------------------个人设置---------------------->
       .improve-message {
         text-align: center;
@@ -487,6 +485,11 @@ export default {
           border: 2px #e5e5e5 solid;
           height: 80px;
           line-height: 80px;
+        }
+        input {
+          border-radius: 5px;
+          height:40px;
+          width:300px;
         }
         .table-border {
           width: 50px;
