@@ -13,12 +13,13 @@ s<template>
             </div>
             <div class="per-menu">
               <ul>
-
                 <li @click="checkmenu = 'information'">
                   <i class="infor"></i>
                   我的消息
                 </li>
-                <li><i class="star"></i>关注列表</li>
+                <li @click="checkmenu = 'followlist'">
+                  <i class="star"></i>关注列表
+                </li>
                 <li @click="checkmenu = 'setupper'">
                   <i class="setting"></i>
                   个人设置
@@ -35,7 +36,7 @@ s<template>
             </div>
           </div>
         </div>
-         <div class="fr per-right">
+        <div class="fr per-right">
           <div class="my-infor" v-show="checkmenu == 'information'">
             <div class="infor-box">
               <div class="infor-header">
@@ -43,29 +44,54 @@ s<template>
               </div>
               <div class="wrapper">
                 <el-scrollbar>
-                  <ul
-                    class="infinite-list"
-                    v-infinite-scroll="load"
-                    style="overflow:auto"
-                  >
-                    <li
-                      v-for="(i, index) in count"
-                      class="infinite-list-item"
-                      :key="index"
-                    >
+                  <ul class="infinite-list" v-infinite-scroll="load" style="overflow:auto">
+                    <li v-for="(i, index) in count" class="infinite-list-item" :key="index">
                       <p>{{ i }}</p>
                       <div class="item-replay">
                         <a href="javascript:;">回复</a>
                       </div>
                     </li>
-                </ul>
+                  </ul>
                 </el-scrollbar>
+              </div>
+            </div>
+          </div>
+          <div class="followlist" v-show="checkmenu == 'followlist'">
+            <div class="menu-title">
+              <p>关注列表</p>
+              <span></span>
+            </div>
+            <div class="followlistbody">
+              <div class="followlist-item" v-for="(item,index) of 3" :key="index">
+                <div class="userimg">
+                  <img src="imgs/hearimg.jpg" alt />
+                </div>
+                <p class="product-title">商品标题</p>
+                <p
+                  class="product-des"
+                >商品描述东西质量非常好，与卖家描述的完全一致，非常满意,真的很喜欢，完全超出期望值，发货速度非常快，包装非常仔细、严实，物流公司服务态度很好，运送速度很快，很满意的一次购物。</p>
+                <div class="product-img">
+                  <img src="/imgs/menu1.jpg" alt />
+                  <img src="/imgs/menu1.jpg" alt />
+                  <img src="/imgs/menu1.jpg" alt />
+                </div>
+                <div class="handleproduct clearfix">
+                  <span class="fl">
+                    <i class="gopay"></i> 前往支付
+                  </span>
+                  <span class="fl">
+                    <i class="dislike"></i>取消收藏
+                  </span>
+                  <span class="fr">
+                    <i class="time"></i>2020/05/22
+                  </span>
+                </div>
               </div>
             </div>
           </div>
           <div class="improve-message" v-show="checkmenu == 'setupper'">
             <div class="menu-title">
-              <p >个人设置</p>
+              <p>个人设置</p>
               <span></span>
             </div>
             <p class="title">完善个人信息</p>
@@ -130,7 +156,7 @@ s<template>
           </div>
           <div class="release-product clearfix" v-show="checkmenu == 'release'">
             <div class="menu-title">
-              <p >发布商品</p>
+              <p>发布商品</p>
               <span></span>
             </div>
 
@@ -157,22 +183,13 @@ s<template>
                     <el-input v-model="form.name" clearable></el-input>
                   </el-form-item>
                   <el-form-item label="商品类别">
-                    <el-select
-                      v-model="form.region"
-                      placeholder="请选择商品类别"
-                    >
+                    <el-select v-model="form.region" placeholder="请选择商品类别">
                       <el-option label="男装鞋包" value="manshoe"></el-option>
-                      <el-option
-                        label="女装鞋包"
-                        value="femaleshoe"
-                      ></el-option>
+                      <el-option label="女装鞋包" value="femaleshoe"></el-option>
                       <el-option label="书籍资料" value="book"></el-option>
                       <el-option label="护肤彩妆" value="Skincare"></el-option>
                       <el-option label="汇吃美食" value="food"></el-option>
-                      <el-option
-                        label="时尚配饰"
-                        value="Accessories"
-                      ></el-option>
+                      <el-option label="时尚配饰" value="Accessories"></el-option>
                       <el-option label="寝室用品" value="Bedding"></el-option>
                     </el-select>
                   </el-form-item>
@@ -187,11 +204,7 @@ s<template>
                     </el-col>
                   </el-form-item>
                   <el-form-item label="接受议价">
-                    <el-switch
-                      v-model="form.delivery"
-                      active-text="接受"
-                      inactive-text="不接受"
-                    ></el-switch>
+                    <el-switch v-model="form.delivery" active-text="接受" inactive-text="不接受"></el-switch>
                   </el-form-item>
                   <el-form-item label="商品特点">
                     <el-checkbox-group v-model="form.type">
@@ -213,9 +226,7 @@ s<template>
                     <el-input type="textarea" v-model="form.desc"></el-input>
                   </el-form-item>
                   <el-form-item>
-                    <el-button type="primary"
-                      >立即创建</el-button
-                    >
+                    <el-button type="primary">立即创建</el-button>
                     <el-button>取消</el-button>
                   </el-form-item>
                 </el-form>
@@ -224,28 +235,35 @@ s<template>
           </div>
           <div class="my-unused" v-show="checkmenu == 'unused'">
             <div class="menu-title">
-              <p >我的闲置</p>
+              <p>我的闲置</p>
               <span></span>
             </div>
             <div class="unusedbody">
-              <div class="unuser-item" v-for="(item,index) of 3" :key=index>
+              <div class="unuser-item" v-for="(item,index) of 3" :key="index">
                 <div class="userimg">
                   <img src="imgs/hearimg.jpg" alt />
                 </div>
                 <p class="product-title">商品标题</p>
-                <p class="product-des">商品描述东西质量非常好，与卖家描述的完全一致，非常满意,真的很喜欢，完全超出期望值，发货速度非常快，包装非常仔细、严实，物流公司服务态度很好，运送速度很快，很满意的一次购物。</p>
+                <p
+                  class="product-des"
+                >商品描述东西质量非常好，与卖家描述的完全一致，非常满意,真的很喜欢，完全超出期望值，发货速度非常快，包装非常仔细、严实，物流公司服务态度很好，运送速度很快，很满意的一次购物。</p>
                 <div class="product-img">
                   <img src="/imgs/menu1.jpg" alt />
                   <img src="/imgs/menu1.jpg" alt />
                   <img src="/imgs/menu1.jpg" alt />
                 </div>
                 <div class="handleproduct clearfix">
-                  <span class="fl"><i class="delete"></i> 编辑</span>
-                  <span class="fl"><i class="edit"></i>删除</span>
-                  <span class="fr"><i class="time"></i>2020/05/22</span>
+                  <span class="fl">
+                    <i class="delete"></i> 编辑
+                  </span>
+                  <span class="fl">
+                    <i class="edit"></i>删除
+                  </span>
+                  <span class="fr">
+                    <i class="time"></i>2020/05/22
+                  </span>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -301,9 +319,9 @@ export default {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
     },
-   onSubmit() {
+    onSubmit() {
       //表单提交事件
-     },
+    },
     load() {
       this.count += 2;
     }
@@ -383,13 +401,13 @@ export default {
       .menu-title {
         font-size: 32px;
         margin-bottom: 25px;
-        span{
-         position: absolute;
-         height: 1px;
-         width: 87%;
-         background: #e5e5e5;
-         top: 35px;
-         left: 132px;
+        span {
+          position: absolute;
+          height: 1px;
+          width: 87%;
+          background: #e5e5e5;
+          top: 35px;
+          left: 132px;
         }
       }
       padding-top: 15px;
@@ -456,7 +474,7 @@ export default {
       //  < -----------------------个人设置---------------------->
       .improve-message {
         text-align: center;
-        .menu-title{
+        .menu-title {
           text-align: left;
         }
         .title {
@@ -512,58 +530,125 @@ export default {
             border-radius: 5px;
             .userimg {
               position: absolute;
-              left: -50px;
+              left: -40px;
               top: 10px;
               img {
                 border-radius: 50%;
-                width: 100px;
-                height: 100px;
+                width: 80px;
+                height: 80px;
               }
             }
-            .product-title{
+            .product-title {
               font-size: 24px;
               padding-top: 40px;
               margin-left: 62px;
             }
-            .product-des{
+            .product-des {
               font-size: 16px;
               margin-left: 62px;
               margin-top: 45px;
             }
-            .product-img{
+            .product-img {
               margin-top: 45px;
               margin-left: 62px;
-              img{
+              img {
                 height: 200px;
                 width: 200px;
                 margin-left: 20px;
               }
             }
-            .handleproduct{
+            .handleproduct {
               margin-top: 15px;
               font-size: 22px;
-              &:last-child{
+              &:last-child {
                 font-size: 14px;
               }
-              span{
-                margin-right: 15px;               
+              span {
+                margin-right: 15px;
                 margin-bottom: 10px;
               }
-              i{
+              i {
                 vertical-align: middle;
                 margin-top: -3px;
-                
               }
-              .delete{
+              .delete {
                 margin-right: -6px;
                 margin-top: -3px;
                 @include Bgimg(28px, 28px, "/imgs/icon/delete.png", contain);
               }
-              .edit{
+              .edit {
                 @include Bgimg(24px, 24px, "/imgs/icon/edit.png", contain);
               }
-              .time{
-                
+              .time {
+                @include Bgimg(24px, 24px, "/imgs/icon/time.png", contain);
+              }
+            }
+          }
+        }
+      }
+      //  < -----------------------关注列表---------------------->
+      .followlist {
+        height: 900px;
+        overflow: scroll;
+        .followlistbody {
+          .followlist-item {
+            position: relative;
+            width: 800px;
+            margin: 0 auto 25px;
+            background: #e5e5e5;
+            border-radius: 5px;
+            .userimg {
+              position: absolute;
+              left: -40px;
+              top: 10px;
+              img {
+                border-radius: 50%;
+                width: 80px;
+                height: 80px;
+              }
+            }
+            .product-title {
+              font-size: 24px;
+              padding-top: 40px;
+              margin-left: 62px;
+            }
+            .product-des {
+              font-size: 16px;
+              margin-left: 62px;
+              margin-top: 45px;
+            }
+            .product-img {
+              margin-top: 45px;
+              margin-left: 62px;
+              img {
+                height: 200px;
+                width: 200px;
+                margin-left: 20px;
+              }
+            }
+            .handleproduct {
+              margin-top: 15px;
+              font-size: 22px;
+              &:last-child {
+                font-size: 14px;
+              }
+              span {
+                margin-right: 15px;
+                margin-bottom: 10px;
+              }
+              i {
+                vertical-align: middle;
+                margin-top: -3px;
+              }
+              .gopay {
+                margin-right: -6px;
+                margin-top: -3px;
+                @include Bgimg(28px, 28px, "/imgs/icon/pay2.png", contain);
+              }
+              .dislike {
+                @include Bgimg(24px, 24px, "/imgs/icon/dislike.png", contain);
+              }
+              .time {
                 @include Bgimg(24px, 24px, "/imgs/icon/time.png", contain);
               }
             }
