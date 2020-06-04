@@ -2,15 +2,15 @@
   <div class="index">
     <div class="remain">
       <a href="/#/personalcenter">
-      <div class="personal">
-        <i></i>
-      </div>
+        <div class="personal">
+          <i></i>
+        </div>
         <span>个人中心</span>
       </a>
       <a href="/#/personalcenter">
-      <div class="shop">
-       <i></i>
-      </div>
+        <div class="shop">
+          <i></i>
+        </div>
         <span>商城</span>
       </a>
     </div>
@@ -305,6 +305,7 @@ export default {
         background-color: rgba(0, 0, 0, 0.4);
         .menu-item {
           display: flex;
+          position: relative;
           height: 50px;
           line-height: 50px;
           padding-left: 10px;
@@ -333,7 +334,6 @@ export default {
             display: none;
             position: absolute;
             z-index: 2;
-            // width: 720px;
             width: 860px;
             height: 450px;
             left: 200px;
@@ -375,46 +375,6 @@ export default {
           height: 100%;
         }
       }
-      // <-----------------------右边框---------------------->
-      // .nav-infor {
-      //   // width: 300px;
-      //   width: 160px;
-      //   border-left: #de2006 1px solid;
-      //   .demo-type {
-      //     display: flex;
-      //     justify-content: center;
-      //     align-items: center;
-      //     // width: 290px;
-      //     width: 80px;
-      //     height: 90px;
-      //     margin-left: 15px;
-      //     border-bottom: #dcd4d4ad 1px ridge;
-      //   }
-      //   .personal,
-      //   .shop {
-      //     height: 30px;
-      //     line-height: 30px;
-      //     margin: 15px 0px 15px 15px;
-      //     a {
-      //       display: absolute;
-      //       font-size: 17px;
-      //       color: #333333;
-      //       font-weight: bold;
-      //       margin-left: 4px;
-
-      //     }
-      //   }
-      //   .personal {
-      //     i {
-      //        @include Bgimg(25px, 25px, "/imgs/icon-personal.png", contain);
-      //     }
-      //   }
-      //   .shop {
-      //     i {
-      //       @include Bgimg(25px, 25px, "/imgs/icon-shopping.png", contain);
-      //     }
-      //   }
-      // }
     }
     // <-----------------------产品栏---------------------->
     .product {

@@ -96,7 +96,7 @@ export default {
           display: flex;
           margin-left: 130px;
           margin-top: 24px;
-          background-image: linear-gradient(#6d8ae4,rgba(199, 187, 96, 0.4));
+          background-color: rgba(109, 138, 228, 0.4);
           .sear-input {
             height: 50px;
             width: 560px;
