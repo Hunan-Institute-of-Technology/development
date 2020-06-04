@@ -224,7 +224,7 @@ export default {
     margin-left: 30px;
     font-size: 45px;
     letter-spacing: 5px;
-    animation: animate 3s ease infinite;
+    animation: animate 3s linear infinite;
     @keyframes animate {
       0%,
       100% {

@@ -1,5 +1,19 @@
 <template>
   <div class="index">
+    <div class="remain">
+      <a href="/#/personalcenter">
+      <div class="personal">
+        <i></i>
+      </div>
+        <span>个人中心</span>
+      </a>
+      <a href="/#/personalcenter">
+      <div class="shop">
+       <i></i>
+      </div>
+        <span>商城</span>
+      </a>
+    </div>
     <div class="container">
       <div class="wrapper-box">
         <div class="nav-menu">
@@ -82,26 +96,6 @@
             slot="button-next"
           ></div>
         </swiper>
-        <div class="nav-infor">
-          <div class="nav">
-            <div class="demo-type">
-              <div>
-                <el-avatar
-                  src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-                ></el-avatar>
-              </div>
-            </div>
-            <!-- --------------- -->
-            <div class="personal">
-              <i class="per-center"></i>
-              <a href="/#/personalcenter">个人中心</a>
-            </div>
-            <div class="shop">
-              <i class="shopping"></i>
-              <a href="/#/personalcenter">商城</a>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="product">
         <div class="pro-module">
@@ -155,7 +149,7 @@ export default {
   methods: {
     photo() {
       this.axios.get("/carousel/getCarouselList").then((res)=>{
-        alert(res);
+        alert(res.data);
       })
     }
   },
@@ -262,6 +256,38 @@ export default {
 <style lang="scss">
 @import "./../assets/scss/mixin.scss";
 .index {
+  .remain {
+    position: fixed;
+    width: 84px;
+    top: 300px;
+    right: 5px;
+    border: 1px solid #f5f5f5;
+    height: 250px;
+    a {
+      display: block;
+      box-sizing: border-box;
+      height: 105px;
+      font-size: 17px;
+      border: 1px solid #f5f5f5;
+      color:#757575;
+      text-align: center;
+      padding-top: 20px;
+      .personal .shop {
+        height: 35px;
+        width: 35px;
+      }
+      .personal {
+        i {
+          @include Bgimg(30px, 30px, "/imgs/icon-static-personal.png")
+        }     
+      }
+      .shop {
+        i {
+          @include Bgimg(30px, 30px, "/imgs/icon-static-shop.png")
+        }
+      }
+   }
+  }
   .container {
     .wrapper-box {
       display: flex;
@@ -272,9 +298,11 @@ export default {
       .nav-menu {
         display: inline-block;
         width: 200px;
-        border-right: #de2006 1px solid;
+        height: 450px;
+        border-right: #e5e5e5 1px solid;
         position: absolute;
         z-index: 9;
+        background-color: rgba(0, 0, 0, 0.4);
         .menu-item {
           display: flex;
           height: 50px;
@@ -283,7 +311,7 @@ export default {
           a {
             position: relative;
             display: inline-block;
-            color: #333333;
+            color: #e0e0e0;
             padding-left: 20px;
             font-size: 16px;
             &:after {
@@ -337,7 +365,7 @@ export default {
       // <-----------------------轮播图---------------------->
       .swiper-container {
         // display: inline-block;
-        width: 1060px;
+        width: 1226px;
         height: 450px;
         .swiper-button-prev {
           left: 200px;
@@ -348,50 +376,50 @@ export default {
         }
       }
       // <-----------------------右边框---------------------->
-      .nav-infor {
-        // width: 300px;
-        width: 160px;
-        border-left: #de2006 1px solid;
-        .demo-type {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          // width: 290px;
-          width: 80px;
-          height: 90px;
-          margin-left: 15px;
-          border-bottom: #dcd4d4ad 1px ridge;
-        }
-        .personal,
-        .shop {
-          height: 30px;
-          line-height: 30px;
-          margin: 15px 0px 15px 15px;
-          a {
-            display: absolute;
-            font-size: 17px;
-            color: #333333;
-            font-weight: bold;
-            margin-left: 4px;
+      // .nav-infor {
+      //   // width: 300px;
+      //   width: 160px;
+      //   border-left: #de2006 1px solid;
+      //   .demo-type {
+      //     display: flex;
+      //     justify-content: center;
+      //     align-items: center;
+      //     // width: 290px;
+      //     width: 80px;
+      //     height: 90px;
+      //     margin-left: 15px;
+      //     border-bottom: #dcd4d4ad 1px ridge;
+      //   }
+      //   .personal,
+      //   .shop {
+      //     height: 30px;
+      //     line-height: 30px;
+      //     margin: 15px 0px 15px 15px;
+      //     a {
+      //       display: absolute;
+      //       font-size: 17px;
+      //       color: #333333;
+      //       font-weight: bold;
+      //       margin-left: 4px;
 
-          }
-        }
-        .personal {
-          i {
-             @include Bgimg(25px, 25px, "/imgs/icon-personal.png", contain);
-          }
-        }
-        .shop {
-          i {
-            @include Bgimg(25px, 25px, "/imgs/icon-shopping.png", contain);
-          }
-        }
-      }
+      //     }
+      //   }
+      //   .personal {
+      //     i {
+      //        @include Bgimg(25px, 25px, "/imgs/icon-personal.png", contain);
+      //     }
+      //   }
+      //   .shop {
+      //     i {
+      //       @include Bgimg(25px, 25px, "/imgs/icon-shopping.png", contain);
+      //     }
+      //   }
+      // }
     }
     // <-----------------------产品栏---------------------->
     .product {
       position: relative;
-      margin-top: 50px;
+      margin-top: 30px;
       margin-bottom: 40px;
       width: 1226px;
       height: 1050px;
