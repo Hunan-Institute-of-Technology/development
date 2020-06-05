@@ -13,22 +13,31 @@ s<template>
             </div>
             <div class="per-menu">
               <ul>
-                <li @click="checkmenu = 'information'">
+                <li
+                  @click="checkmenu = 'information'"
+                  :class="{'checkbgColor':checkmenu == 'information'}"
+                >
                   <i class="infor"></i>
                   我的消息
                 </li>
-                <li @click="checkmenu = 'followlist'">
+                <li
+                  @click="checkmenu = 'followlist'"
+                  :class="{'checkbgColor':checkmenu == 'followlist'}"
+                >
                   <i class="star"></i>关注列表
                 </li>
-                <li @click="checkmenu = 'setupper'">
+                <li
+                  @click="checkmenu = 'setupper'"
+                  :class="{'checkbgColor':checkmenu == 'setupper'}"
+                >
                   <i class="setting"></i>
                   个人设置
                 </li>
-                <li @click="checkmenu = 'release'">
+                <li @click="checkmenu = 'release'" :class="{'checkbgColor':checkmenu == 'release'}">
                   <i class="release-items"></i>
                   发布商品
                 </li>
-                <li @click="checkmenu = 'unused'">
+                <li @click="checkmenu = 'unused'" :class="{'checkbgColor':checkmenu == 'unused'}">
                   <i class="idle-items"></i>
                   我的闲置
                 </li>
@@ -159,24 +168,7 @@ s<template>
               <p>发布商品</p>
               <span></span>
             </div>
-
-            <div class="pullimg fl">
-              <!-- <img src="imgs/menu3.jpg" alt />
-              <div class="btn">上传商品图片</div>-->
-              <p class="despicture">添加图片描述</p>
-              <el-upload
-                action="https://jsonplaceholder.typicode.com/posts/"
-                list-type="picture-card"
-                :on-preview="handlePictureCardPreview"
-                :on-remove="handleRemove"
-              >
-                <i class="el-icon-plus"></i>
-              </el-upload>
-              <el-dialog :visible.sync="dialogVisible">
-                <img width="100%" :src="dialogImageUrl" alt />
-              </el-dialog>
-            </div>
-            <div class="pulltext fr">
+            <div class="pulltext">
               <div class="fl pullbody" style="background:white">
                 <el-form ref="form" :model="form" label-width="80px">
                   <el-form-item label="商品名称">
@@ -225,6 +217,24 @@ s<template>
                   <el-form-item label="商品描述">
                     <el-input type="textarea" v-model="form.desc"></el-input>
                   </el-form-item>
+                  <el-form-item label="图片描述">
+                    <div class="pullimg fl">
+                      <!-- <img src="imgs/menu3.jpg" alt />
+                      <div class="btn">上传商品图片</div>-->
+                      <!-- <p class="despicture">图片描述</p> -->
+                      <el-upload
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        list-type="picture-card"
+                        :on-preview="handlePictureCardPreview"
+                        :on-remove="handleRemove"
+                      >
+                        <i class="el-icon-plus"></i>
+                      </el-upload>
+                      <el-dialog :visible.sync="dialogVisible">
+                        <img width="100%" :src="dialogImageUrl" alt />
+                      </el-dialog>
+                    </div>
+                  </el-form-item>
                   <el-form-item>
                     <el-button type="primary">立即创建</el-button>
                     <el-button>取消</el-button>
@@ -232,6 +242,7 @@ s<template>
                 </el-form>
               </div>
             </div>
+
           </div>
           <div class="my-unused" v-show="checkmenu == 'unused'">
             <div class="menu-title">
@@ -331,16 +342,22 @@ export default {
 <style lang="scss">
 @import "./../assets/scss/mixin.scss";
 .personal {
+  background-color: white;
   .personal-body {
+    border: 1px solid #e1e2e5;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14);
+    background: #fafafa;
     margin-top: 8px;
-    position: absolute;
+    position: relative;
     .per-left {
+      border-right: 1px solid #e1e2e5;
       padding-top: 15px;
       width: 200px;
       height: 600px;
       // background: blanchedalmond;
       // background-color: #706fd3;image
-      background-image:linear-gradient(rgba(198, 81, 241, 0.3), rgba(198, 81, 241, 0.6));
+      background-image: #99a2aa;
       .wrapper {
         text-align: center;
         .per-log {
@@ -359,26 +376,31 @@ export default {
           }
           .free-num {
             font-size: 18px;
-            color: aqua;
+            // color: aqua;
           }
         }
         .per-menu {
+          .checkbgColor {
+            display: block;
+            background-color: #74b9ff !important;
+          }
           li {
             font-size: 18px;
-            border-top: 2px solid #e5e5e5;
+            // border-top: 2px solid #e5e5e5;
             height: 60px;
             line-height: 60px;
             cursor: pointer;
-            &:last-child {
-              border-bottom: 2px solid #e5e5e5;
-            }
+            // &:last-child {
+            //   border-bottom: 2px solid #e5e5e5;
+            // }
             i {
               margin-right: 5px;
               vertical-align: middle;
               margin-top: -3px;
             }
+
             .infor {
-              @include Bgimg(24px, 24px, "/imgs/icon-per-5.png", contain);
+              @include Bgimg(24px, 24px, "/imgs/icon-per-7.png", contain);
             }
             .star {
               @include Bgimg(24px, 24px, "/imgs/icon-per-4.png", contain);
@@ -397,6 +419,7 @@ export default {
       }
     }
     .per-right {
+      background: white;
       position: relative;
       .menu-title {
         font-size: 32px;
@@ -411,10 +434,13 @@ export default {
         }
       }
       padding-top: 15px;
-      width: 1026px;
+      width: 1020px;
       // background: yellowgreen;
-      background-image:linear-gradient(to left,  rgba(80, 50, 162, 0.4),  rgba(80, 50, 162, 0.8));
-;
+      // background-image: linear-gradient(
+      //   to left,
+      //   rgba(80, 50, 162, 0.4),
+      //   rgba(80, 50, 162, 0.8)
+      // );
       //  < -----------------------我的消息---------------------->
       .my-infor {
         .infor-box {
@@ -460,17 +486,17 @@ export default {
                     line-height: 30px;
                     font-size: 13px;
                     right: 19px;
-                    }
-                    a {
-                      color: #60c17f;
-                      font-size: 13px;
-                    }
+                  }
+                  a {
+                    color: #60c17f;
+                    font-size: 13px;
                   }
                 }
               }
             }
           }
         }
+      }
       //  < -----------------------个人设置---------------------->
       .improve-message {
         text-align: center;
@@ -488,8 +514,8 @@ export default {
         }
         input {
           border-radius: 5px;
-          height:40px;
-          width:300px;
+          height: 40px;
+          width: 300px;
         }
         .table-border {
           width: 50px;
@@ -504,8 +530,8 @@ export default {
       //  < -----------------------发布物品---------------------->
       .release-product {
         .pullimg {
-          background: blue;
-          width: 400px;
+          // background: blue;
+          width: 100%;
           .despicture {
             text-align: center;
             font-size: 28px;
