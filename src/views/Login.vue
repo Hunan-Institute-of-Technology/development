@@ -19,6 +19,7 @@
       <span>t</span>
     </h2>
     <div class="box">
+      <a href="#/index" class="home-page"></a>
       <h1>用户登录</h1>
       <input type="text" placeholder="用户名" v-model="username" />
       <input type="password" placeholder="密码" v-model="password" />
@@ -52,21 +53,21 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "./../assets/scss/mixin.scss";
 .loginbody {
   position: relative;
   width: 100%;
   height: 750px;
-  font-family: sans-serif;
   text-align: center;
   background: #000;
   color: #d1d8e0;
   perspective: 340px;
   .bkgsye {
     position: absolute;
-	  top: 50%;
-	  left: 50%;
-	  width: 2px;
-	  height: 2px;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 2px;
     box-shadow: -447px 387px #fbc531, -401px 118px #fafafa, -109px 217px #d9d9d9,
       -680px -436px #e3e3e3, 514px 360px #cccccc, -708px 298px #e8e8e8,
       -696px -270px #ededed, 116px -128px #f7f7f7, 179px 35px white,
@@ -184,56 +185,56 @@ export default {
       -649px 230px #ebebeb, 598px -92px #c7c7c7, -638px 113px #c2c2c2,
       151px 363px #f7f7f7, -445px -241px #f0f0f0, 527px -14px #dedede,
       203px -61px #cfcfcf, -716px -284px #ebebeb, -525px 134px #c2c2c2;
-       animation: fly 3s linear infinite;
-       transform-style: preserve-3d;
-       &:before, &:after {
-	  content: "";
-	  position: absolute;
-	  width: inherit;
-	  height: inherit;
-	  box-shadow: inherit;
-	}
-	&:before {
-	  transform: translateZ(-300px);
-	  opacity: .6;
-	}
-	&:after {
-	  transform: translateZ(-600px);
-	  -webkit-transform: translateZ(-600px);
-	  -moz-transform: translateZ(-600px);
-	  opacity: .4;
-	}
+    animation: fly 3s linear infinite;
+    transform-style: preserve-3d;
+    &:before &:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      box-shadow: inherit;
+    }
+    &:before {
+      transform: translateZ(-300px);
+      -webkit-transform: translateZ(-300px);
+      -moz-transform: translateZ(-300px);
+      opacity: 0.6;
+    }
+    &:after {
+      transform: translateZ(-600px);
+      -webkit-transform: translateZ(-600px);
+      -moz-transform: translateZ(-600px);
+      opacity: 0.4;
+    }
 
-	@keyframes fly {
-	  from {
-		transform: translateZ(0px);
-		opacity: .6;
-	  }
-	  to {
-		transform: translateZ(300px);
-		opacity: 1;
-	  }
-	}
+    @keyframes fly {
+      from {
+        transform: translateZ(0px);
+        opacity: 0.6;
+      }
+      to {
+        transform: translateZ(300px);
+        opacity: 1;
+      }
+    }
   }
 
   h2 {
     position: absolute;
-    height: 250px;
-    top: 100px;
-    width: 300px;
-    margin-left: 30px;
-    font-size: 45px;
+    left: 180px;
+    top: 50px;
+    font-size: 30px;
     letter-spacing: 5px;
     animation: animate 3s linear infinite;
     @keyframes animate {
       0%,
       100% {
         color: #fff;
-        text-shadow: 0 0 10px#fbc531, 0 0 55px #fbc531, 0 0 100px #fbc531,
-          0 0 180px #fbc531, 0 0 200px #fbc531, 0 0 240px #4b7bec,
-          0 0 280px #fbc531;
+        text-shadow: 0 0 10px#fbc531, 0 0 55px #fbc531, 0 0 90px #fbc531,
+          0 0 120px #fbc531, 0 0 150px #fbc531, 0 0 180px #fbc531,
+          0 0 0px #fbc531;
       }
-      25%,
+      25%, 
       70% {
         color: #000;
         text-shadow: none;
@@ -244,12 +245,18 @@ export default {
     border-radius: 10px;
     width: 300px;
     padding: 40px;
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: #fbc531;
     text-align: center;
+    .home-page {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      @include Bgimg(30px, 30px, "/imgs/hu1.png", contain);
+    }
   }
   .box h1 {
     color: #4b7bec;

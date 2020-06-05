@@ -16,16 +16,18 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 axios.defaults.baseURL = "/api/fleamarket";
 axios.defaults.timeout = 8000;
-// axios.interceptors.response.use(function (response) {
-//   let res = response.data;
-//   if (res.status == 200) {
-//     return res.data;
-//   } else if (res.status == 502) {
-//     window.location.href = "/#/login";
-//   } else {
-//     alert(res.msg);
-//   }
-// });
+axios.interceptors.response.use(function (response) {
+  let res = response.data;
+  if (res.status == 200) {
+    return res.data;
+  } else if (res.status == 502) {
+    window.location.href = "/#/login";
+    return Promise.reject(res);
+  } else {
+    this.$message.warning(res.msg);
+    return Promise.reject(res);
+  }
+});
 new Vue({
   router,
   store,

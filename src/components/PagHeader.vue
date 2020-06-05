@@ -5,6 +5,8 @@
         <a href="/#/index">
           <img src="/imgs/hu1.png" />
         </a>
+        <span class="site-name">
+        </span>
       </div>
     </div>
   </div>
@@ -15,6 +17,7 @@ export default {
 }
 </script>
 <style lang="scss">
+@import "./../assets/scss/mixin.scss";
 .pag {
   border-bottom: #757373 1px solid;
   // /
@@ -32,6 +35,12 @@ export default {
         height: 100%;
         width: 100%;
       }
+    }
+    .site-name {
+      display: inline-block;
+      margin-left: 50px;
+      height: 70px;
+      @include Bgimg(550px, 70px, "/imgs/site-name.png", contain);
     }
   }
 }
