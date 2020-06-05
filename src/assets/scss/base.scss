@@ -13,6 +13,10 @@ input{
 .fr{
    float: right;
 }
+.center{
+   text-align: center;
+   margin: 0 auto;
+}
 .clearfix::before,.clearfix::after{
    display: table;
    content: " ";
