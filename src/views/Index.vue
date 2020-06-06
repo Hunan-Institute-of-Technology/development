@@ -19,7 +19,7 @@
         <div class="nav-menu">
           <ul class="menu-wrapper">
             <li class="menu-item">
-              <a href="javascript:;">最新发布</a>
+              <a href="javascript:;" class="">最新发布</a>
               <div class="children">
                 <ul v-for="(item, i) of menuList" :key="i">
                   <li v-for="(sub, j) of item" :key="j">
@@ -290,67 +290,69 @@ export default {
   }
   .container {
     .wrapper-box {
+      // position: absolute;
       display: flex;
       height: 450px;
       border: 1px rgba(122, 119, 119, 0.2) solid;
-      // box-shadow: 2px 2px 10px ragb(255, 255, 0, 0.5);
       // <-----------------------主题栏---------------------->
       .nav-menu {
         display: inline-block;
+        position: absolute;
         width: 200px;
         height: 450px;
         border-right: #e5e5e5 1px solid;
-        position: absolute;
         z-index: 9;
         background-color: rgba(0, 0, 0, 0.4);
-        .menu-item {
-          display: flex;
-          position: relative;
-          height: 50px;
-          line-height: 50px;
-          padding-left: 10px;
-          a {
-            position: relative;
-            display: inline-block;
-            color: #e0e0e0;
-            padding-left: 20px;
-            font-size: 16px;
-            &:after {
-              position: absolute;
-              left: 170px;
-              top: 15px;
-              content: "";
-              display: inline-block;
-              @include Bgimg(10px, 15px, "/imgs/icon-menu.png", contain);
-            }
-          }
-          &:hover {
-            background-color: #de2006;
-            .children {
+        .menu-wrapper {
+          .menu-item {
+            display: flex;
+            height: 50px;
+            line-height: 50px;
+            padding-left: 10px;
+            a {
+              position: relative;
               display: block;
+              width: 200px;
+              color: #e0e0e0;
+              padding-left: 20px;
+              font-size: 16px;
+              &:after {
+                position: absolute;
+                right: 10px;
+                top: 16px;
+                content: "";
+                @include Bgimg(18px, 18px, "/imgs/icon-menu.png", contain);
+              }
             }
-          }
-          .children {
-            display: none;
-            position: absolute;
-            z-index: 2;
-            width: 860px;
-            height: 450px;
-            left: 200px;
-            top: 0;
-            background-color: #ffffff;
-            border: #de2006 1px solid;
-            ul {
-              display: flex;
-              height: 130px;
-              justify-content: space-between;
-              li {
+            &:hover {
+              background-color: #de2006;
+              .children {
+                display: block;
+              }
+            }
+            .children {
+              display: none;
+              position: absolute;
+              width: 860px;
+              height: 450px;
+              left: 200px;
+              top: 0;
+              background-color: #ffffff;
+              // border: #de2006 1px solid;
+              ul {
+                display: flex;
                 height: 130px;
-                flex: 1;
-                z-index: 8;
-                a {
-                  font-size: 14px;
-                  color: #e0e0e0;
+                justify-content: space-between;
+                li {
+                  height: 130px;
+                  line-height: 75px;
+                  flex: 1;
+                  z-index: 8;
+                  padding-left: 23px;
+                  a {
+                    font-size: 14px;
+                    color: #e0e0e0;
+                  }
                   img {
                     height: 50px;
                     line-height: 50px;
@@ -361,7 +363,7 @@ export default {
             }
           }
         }
-      }
+      } 
       // <-----------------------轮播图---------------------->
       .swiper-container {
         // display: inline-block;
