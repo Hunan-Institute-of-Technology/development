@@ -373,7 +373,7 @@ export default {
   },
 
   components: {
-    PagHeader，
+    PagHeader,
      Modal
   },
   methods: {
